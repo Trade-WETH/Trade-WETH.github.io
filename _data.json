@@ -1,0 +1,107 @@
+{
+ "keyword": "trade weth",
+ "h1": "Trade WETH",
+ "brand": "WETH",
+ "niche": "token",
+ "verb": "Trade",
+ "title": "Trade WETH - Open App",
+ "meta_description": "trade weth through Uniswap with the verified Wrapped Ether contract, wallet quote review, and a direct app route to confirm onchain.",
+ "palette": {
+  "mode": "dark",
+  "bg": "#3C3C3D",
+  "accent": "#627EEA",
+  "ink": "#FFFFFF"
+ },
+ "hero_h2": "Swap into wrapped ether through a verified Ethereum route",
+ "hero_lead": "trade weth through the Uniswap app with a wallet-connected route to the verified Ethereum WETH contract, quote review, and onchain confirmation.",
+ "badge": "Ethereum",
+ "widget": {
+  "from": "ETH",
+  "from_net": "Ethereum",
+  "to": "WETH",
+  "to_net": "Ethereum",
+  "action": "Open Uniswap App"
+ },
+ "trust": [
+  "ERC-20 wrapped ETH",
+  "Ethereum mainnet",
+  "WETH9 0xC02a...56Cc2"
+ ],
+ "what_is": "WETH is Wrapped Ether, the ERC-20 representation of ETH used across Ethereum DeFi; <a href='https://ethereum.org/wrapped-eth/'>ethereum.org</a> explains why wrapping makes ETH work with ERC-20 contracts.",
+ "how": [
+  {
+   "t": "Open the app",
+   "d": "Use the official Uniswap web app route and confirm the domain is app.uniswap.org before connecting."
+  },
+  {
+   "t": "Connect wallet",
+   "d": "Choose an Ethereum wallet and keep ETH available for network gas."
+  },
+  {
+   "t": "Verify WETH",
+   "d": "Check the Ethereum WETH contract address: 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2."
+  },
+  {
+   "t": "Review and confirm",
+   "d": "Compare the quote, route, price impact, and approval details before signing onchain."
+  }
+ ],
+ "points": [
+  {
+   "h": "Verified contract first",
+   "p": "Use the Ethereum mainnet WETH contract shown on <a href='https://etherscan.io/token/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2'>Etherscan</a>, not a copied ticker from search or social posts."
+  },
+  {
+   "h": "App-first routing",
+   "p": "Uniswap supports prefilled swap links, so the page can send users directly into the official web app with WETH selected."
+  },
+  {
+   "h": "ETH and WETH are different forms",
+   "p": "ETH pays gas natively, while WETH is the ERC-20 wrapper used by many token contracts, DEX pools, and DeFi apps."
+  }
+ ],
+ "eeat": [
+  {
+   "text": "ethereum.org WETH guide",
+   "url": "https://ethereum.org/wrapped-eth/"
+  },
+  {
+   "text": "Etherscan WETH contract",
+   "url": "https://etherscan.io/token/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"
+  },
+  {
+   "text": "Uniswap custom linking docs",
+   "url": "https://developers.uniswap.org/docs/trading/custom-interface-links"
+  }
+ ],
+ "faq": [
+  {
+   "q": "Where can I trade weth?",
+   "a": "You can use the official Uniswap web app route on app.uniswap.org and verify WETH against the Ethereum mainnet contract before connecting a wallet.",
+   "open": true
+  },
+  {
+   "q": "Do I need ETH to trade weth?",
+   "a": "Yes. Ethereum transactions require ETH for gas, even when the asset you receive or approve is WETH.",
+   "open": false
+  },
+  {
+   "q": "Which contract should I verify before I trade weth?",
+   "a": "On Ethereum mainnet, verify 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2 on <a href='https://etherscan.io/token/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2'>Etherscan</a>.",
+   "open": false
+  },
+  {
+   "q": "Is WETH the same as ETH when I trade weth?",
+   "a": "WETH represents ETH in ERC-20 form, but it is still a token contract interaction; review approvals, network, and wallet prompts carefully.",
+   "open": false
+  },
+  {
+   "q": "Can I trade weth on other networks?",
+   "a": "Yes, but contract addresses differ by network. Always verify the address on the relevant official explorer before sending funds or approving a swap.",
+   "open": false
+  }
+ ],
+ "official_url": "https://app.uniswap.org/#/swap?outputCurrency=0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+ "official_domain": "app.uniswap.org",
+ "footer_note": "Not the official app; verify app.uniswap.org before connecting. Educational information only, not financial advice."
+}
