@@ -1,4 +1,3 @@
 User-agent: *
 Allow: /
-
 Sitemap: https://trade-weth.github.io/sitemap.xml
