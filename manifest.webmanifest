@@ -1,0 +1,19 @@
+{
+  "name": "Trade WETH",
+  "short_name": "Trade WETH",
+  "description": "Swap WETH for any token through on-chain liquidity. How wrapping works, approvals, fees, and exactly what to verify before you sign.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "lang": "en",
+  "background_color": "#f5f6f8",
+  "theme_color": "#f5f6f8",
+  "icons": [
+    {
+      "src": "favicon.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

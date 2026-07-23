@@ -1,66 +1,31 @@
 # Trade WETH
-> Trade WETH is an independent, non-custodial dashboard for understanding and initiating wallet-controlled exchanges involving Wrapped Ether.
 
-## What is Trade WETH
-Trade WETH presents information about swapping WETH through decentralized, on-chain markets without taking custody of user assets. WETH is an ERC-20 representation of ETH that lets DeFi applications handle ether through the same token interface used for other fungible assets. Trading WETH means exchanging it for another token at a market-determined rate; wrapping or unwrapping ETH is instead a one-for-one smart-contract conversion before network fees. Unlike a centralized exchange, a non-custodial dashboard does not hold account balances or private keys.
-
-## How it works
-1. Connect a compatible self-custody wallet and select the intended blockchain.
-2. Choose WETH and an output token; the interface requests quotes or routes from available on-chain liquidity.
-3. Verify the chain, token contracts, route, price impact, minimum received, fees, and transaction deadline.
-4. If WETH lacks a sufficient allowance, authorize the designated spender through an approval transaction or supported permit.
-5. Sign the swap in the wallet; the execution contract transfers approved WETH through liquidity pools and returns the output token directly to the wallet.
+> Trade WETH from your own wallet: quotes, routes, and signing for exchanging Wrapped Ether on decentralized markets — no custody, no accounts.
 
 ## Key facts
-- Canonical Ethereum Mainnet WETH uses chain ID `1` and contract `0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2`.
-- WETH is an ERC-20 token with symbol `WETH` and 18 decimals.
-- Depositing ETH into WETH9 mints the same amount of WETH; withdrawing burns WETH and returns the same amount of ETH.
-- Native ETH, not WETH, is normally required to pay Ethereum gas.
-- WETH variants on other networks have different contracts and must be verified separately.
-- A swap price comes from available liquidity, not from the WETH wrapping contract.
-- Selling WETH may require an ERC-20 allowance granting a specific contract permission to transfer it.
-- Non-custodial execution keeps private keys in the wallet, but smart-contract, frontend, wallet, RPC, and liquidity risks remain.
-- Completion requires on-chain inclusion and confirmation; timing varies with the selected network and transaction fee.
+- Token: Wrapped Ether (WETH), an ERC-20 token with 18 decimals
+- Backing / peg: 1:1 with ETH — depositing ETH mints the same amount of WETH
+- Convert: Deposit ETH to mint WETH; withdraw to burn WETH and get ETH back, before gas
+- Networks: Canonical contract on Ethereum mainnet (chain ID 1); other networks use different contracts
+- Costs: Gas paid in native ETH; a DEX swap adds pool fees and price impact
+- Verify: Check the contract address, not the ticker
 
-## Common questions
-### Is trading WETH safe?
-Canonical WETH9 is simple and formally analyzed, but that does not validate every trading interface or router. Verify the URL, network, token address, spender, and wallet request before signing.
-
-### Who controls my funds?
-The connected wallet controls them until an authorized contract executes the signed transaction. The dashboard should never request a seed phrase or private key.
-
-### What does a WETH trade cost?
-Costs can include network gas, disclosed venue or interface fees, liquidity-provider fees, price impact, and slippage. An approval may require a separate paid transaction.
-
-### How long does it take?
-A swap remains pending until included on-chain and may require additional confirmations. Congestion, fee settings, and the selected network determine the actual time.
-
-### Which assets and chains are supported?
-The canonical contract above applies to Ethereum Mainnet. Other networks and tradable tokens depend on verified deployments, venue integrations, and available liquidity.
-
-### How do I start?
-Use a self-custody wallet containing WETH plus the network’s native gas token. Review the quote and contract permissions, then confirm only the transaction you recognize.
-
-### What are the main risks?
-Wrong-network tokens, counterfeit contracts, malicious approvals, excessive allowances, smart-contract defects, low liquidity, slippage, MEV, and failed transactions that still consume gas are the principal risks.
+## On this page
+- [What is Trade WETH?](https://trade-weth.github.io/#what)
+- [Getting in and out](https://trade-weth.github.io/#wrap)
+- [Swapping it on a DEX](https://trade-weth.github.io/#swap)
+- [The token vs its native asset](https://trade-weth.github.io/#vs)
+- [Costs and gas](https://trade-weth.github.io/#fees)
+- [Is Trade WETH safe?](https://trade-weth.github.io/#safety)
+- [Problems and fixes](https://trade-weth.github.io/#troubleshoot)
+- [FAQ](https://trade-weth.github.io/#faq)
 
 ## App
-- Dashboard: https://trade-weth.github.io/
-- App: https://trade-weth.github.io/dashboard/
+- [Trade WETH dashboard](https://trade-weth.github.io/)
+- [Open the app](https://trade-weth.github.io/dashboard/)
 
-## Official resources
-Ethereum Wrapped Ether guide: https://ethereum.org/wrapped-eth/
-ERC-20 standard: https://eips.ethereum.org/EIPS/eip-20
-Canonical WETH repository: https://github.com/gnosis/canonical-weth
-WETH9 source code: https://github.com/gnosis/canonical-weth/blob/master/contracts/WETH9.sol
-WETH formal-verification report: https://www.zellic.io/blog/formal-verification-weth/
-
-## Data & references
-Etherscan WETH contract: https://etherscan.io/token/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2
-Blockscout WETH contract: https://eth.blockscout.com/token/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2
-CoinGecko WETH market data: https://www.coingecko.com/en/coins/weth
-DefiLlama DEX data: https://defillama.com/dexs
-Ethereum gas documentation: https://ethereum.org/developers/docs/gas/
-Ethereum Mainnet chain ID standard: https://eips.ethereum.org/EIPS/eip-155
-Uniswap swap-field reference: https://support.uniswap.org/hc/en-us/articles/39862756339341-Uniswap-Web-App-The-Swap-Screen
-Ethereum overview: https://en.wikipedia.org/wiki/Ethereum
+## Sources
+- [ethereum.org](https://ethereum.org/wrapped-eth/)
+- [github.com](https://github.com/gnosis/canonical-weth)
+- [ethereum.org](https://ethereum.org/developers/docs/standards/tokens/erc-20/)
+- [eth.blockscout.com](https://eth.blockscout.com/token/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2)
