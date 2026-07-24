@@ -1,19 +1,20 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Trade WETH — Dashboard</title>
-  <meta name="description" content="Swap WETH for any token through on-chain liquidity. How wrapping works, approvals, fees, and exactly what to verify before you sign.">
-  <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1">
-  <meta name="theme-color" content="#f5f6f8">
-  <link rel="canonical" href="https://trade-weth.github.io/">
-  <link rel="icon" type="image/png" href="favicon.png">
-  <link rel="apple-touch-icon" href="favicon.png">
-  <link rel="manifest" href="manifest.webmanifest">
-  <link rel="image_src" href="og-cover.png">
-  <link rel="preconnect" href="https://api.coingecko.com" crossorigin>
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Trade WETH — Dashboard</title>
+<meta content="Swap WETH for any token through on-chain liquidity. How wrapping works, approvals, fees, and exactly what to verify before you sign." name="description"/>
+<meta content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" name="robots"/>
+<meta content="#f5f6f8" name="theme-color"/>
+<link href="https://trade-weth.github.io/" rel="canonical"/>
+<link href="favicon.png" rel="icon" type="image/png"/>
+<link href="favicon.png" rel="apple-touch-icon"/>
+<link href="manifest.webmanifest" rel="manifest"/>
+<link href="og-cover.png" rel="image_src"/>
+<link crossorigin="" href="https://api.coingecko.com" rel="preconnect"/>
+<style>
 /* Trade WETH — independent single-page hub. */
 :root {
   color-scheme: light;
@@ -112,7 +113,7 @@ html:not(.js) .menu-btn { display: none; }
 
 /* ───────── main / topbar ───────── */
 .main { flex: 1; min-width: 0; display: flex; flex-direction: column; }
-.topbar { position: sticky; top: 0; z-index: 40; flex: 0 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 12px 20px; flex-wrap: wrap; padding: 11px 26px; border-bottom: 1px solid var(--line); background: rgba(255, 255, 255, 0.82); backdrop-filter: blur(10px); }
+.topbar { position: relative; z-index: 40; flex: 0 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 12px 20px; flex-wrap: wrap; padding: 21px 26px; border-bottom: 0; background: transparent; }
 .topbar-right { display: flex; align-items: center; gap: 10px 18px; flex-wrap: wrap; }
 .mode-switch { display: inline-flex; align-items: center; gap: 10px; }
 .ms-label { font-size: 13.5px; font-weight: 700; color: var(--muted); transition: color 150ms var(--ease); }
@@ -176,6 +177,44 @@ html:not(.js) .menu-btn { display: none; }
 .content .lead-in { padding: clamp(4px, 1vh, 12px) 0 clamp(10px, 2.5vh, 22px); }
 .content .lead-in > p { margin: 0 0 16px; font-size: 15px; line-height: 1.66; color: var(--text); }
 .content .lead-in > p strong { color: var(--ink); font-weight: 700; }
+/* premium feature card (modern-site feel) */
+.content .lead-in .feat{position:relative;width:min(1120px,calc(100vw - 44px));margin-left:50%;transform:translateX(-50%);display:grid;grid-template-columns:1.08fr .92fr;align-items:stretch;background:linear-gradient(165deg,#141824,#0b0e15);border:1px solid rgba(255,255,255,.09);border-radius:28px;overflow:hidden;box-shadow:0 52px 120px -55px rgba(0,0,0,.82)}
+.feat-l{padding:clamp(32px,4vw,64px);display:flex;flex-direction:column;justify-content:center}
+.feat-l h2{margin:0;font-size:clamp(2.2rem,4.6vw,3.2rem);line-height:1.03;font-weight:800;letter-spacing:-.03em;color:#fff}
+.feat-lead{margin:20px 0 0;font-size:17px;line-height:1.6;color:rgba(255,255,255,.9);max-width:48ch}
+.content .lead-in .feat-lead a{color:#fff;text-decoration:underline;text-decoration-color:rgba(255,255,255,.55);text-underline-offset:3px}
+.content .lead-in .feat-lead a:hover{text-decoration-color:#fff}
+.feat-cta{margin:32px 0 0}
+.content .lead-in .feat-btn{display:inline-flex;align-items:center;gap:10px;padding:17px 38px;border-radius:999px;background:linear-gradient(135deg,var(--accent),color-mix(in srgb,var(--accent) 50%,#7c4dff));color:#fff;font-weight:750;font-size:16.5px;text-decoration:none;box-shadow:0 20px 44px -12px var(--accent-glow);transition:transform .16s var(--ease),box-shadow .16s var(--ease)}
+.content .lead-in .feat-btn:hover{transform:translateY(-2px);box-shadow:0 26px 56px -14px var(--accent-glow)}
+.feat-btn .arr{transition:transform .18s var(--ease)}
+.content .lead-in .feat-btn:hover .arr{transform:translateX(3px)}
+.feat-more{margin:18px 0 0}
+.feat-readmore{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:7px;font-size:13.5px;font-weight:700;color:rgba(255,255,255,.7);transition:color .15s var(--ease)}
+.feat-readmore::-webkit-details-marker{display:none}
+.feat-readmore:hover{color:#fff}
+.feat-readmore .chev{width:15px;height:15px;transition:transform .2s var(--ease)}
+.feat-more[open] .feat-readmore .chev{transform:rotate(180deg)}
+.feat-detail{margin:20px 0 0;font-size:14.5px;line-height:1.72;color:rgba(255,255,255,.82)}
+.content .lead-in .feat-detail a{color:#fff;text-decoration:underline;text-decoration-color:rgba(255,255,255,.55);text-underline-offset:3px}
+.feat-more:not([open]) .feat-detail{display:none}
+.content .lead-in .feat-lead{color:rgba(255,255,255,.9)}
+.content .lead-in .feat-detail,.content .lead-in .feat-detail p{color:rgba(255,255,255,.82)}
+.feat-facts{display:grid;grid-template-columns:1fr 1fr;gap:0 26px;margin:18px 0 2px}
+.feat-fact{padding:10px 0;border-top:1px solid rgba(255,255,255,.1)}
+.feat-fact .fl{display:block;font-size:10px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:rgba(255,255,255,.5);margin:0 0 3px}
+.feat-fact .fv{display:block;font-size:12.5px;line-height:1.5;color:rgba(255,255,255,.88)}
+.feat-r{position:relative;overflow:hidden;min-height:clamp(300px,32vw,440px);background:radial-gradient(120% 105% at 70% 22%,color-mix(in srgb,var(--accent) 52%,#1a1030),#0a0d14 70%)}
+.feat-r::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:36px 36px;-webkit-mask:radial-gradient(70% 72% at 64% 36%,#000,transparent 76%);mask:radial-gradient(70% 72% at 64% 36%,#000,transparent 76%)}
+.feat-badge{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:2;width:clamp(122px,16vw,166px);height:clamp(122px,16vw,166px);border-radius:34px;display:grid;place-items:center;background:linear-gradient(160deg,rgba(255,255,255,.18),rgba(255,255,255,.02));box-shadow:0 38px 84px -22px var(--accent-glow),inset 0 0 0 1px rgba(255,255,255,.18)}
+.feat-badge img{width:52%;height:52%;object-fit:contain}
+@media (max-width:860px){
+  .content .lead-in .feat{width:calc(100vw - 28px);grid-template-columns:1fr}
+  .feat-l{padding:30px 22px 32px}
+  .feat-r{min-height:200px}
+  .feat-facts{grid-template-columns:1fr}
+}
+
 .tbl.spec table { min-width: 0; }
 .tbl.spec td:first-child { color: var(--muted); font-weight: 600; white-space: nowrap; width: 1%; }
 .content .sec { border-top: 1px solid var(--line); scroll-margin-top: 66px; }
@@ -323,167 +362,189 @@ html.js .reveal.in { opacity: 1; transform: none; }
 .mnote { text-align: center; font-size: 11px; color: var(--muted); margin: 12px 2px 0; line-height: 1.5; }
 .mnote a { color: var(--accent-2); font-weight: 600; text-decoration: none; }
 @media (prefers-reduced-motion: reduce) { .scrollcue2 svg, .mspin { animation: none; } .mbar i { transition: none; } }
+/* docs layout (sticky TOC + open sections) */
+.docs{position:relative;width:min(1120px,calc(100vw - 44px));margin-left:50%;transform:translateX(-50%);display:grid;grid-template-columns:236px minmax(0,1fr);gap:clamp(28px,4vw,60px);margin-top:clamp(40px,6vh,72px);align-items:start}
+.toc{position:sticky;top:74px;align-self:start;max-height:calc(100dvh - 96px);overflow:auto}
+.toc-h{margin:0 0 10px;font-size:10.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);padding-left:13px}
+.toc a{display:block;padding:7px 13px;border-left:2px solid var(--line);color:var(--muted);font-size:13px;font-weight:600;line-height:1.35;text-decoration:none;transition:color .15s var(--ease),border-color .15s var(--ease)}
+.toc a:hover{color:var(--ink)}
+.toc a.active{color:var(--accent-2);border-left-color:var(--accent);font-weight:750}
+.doc-main{min-width:0}
+.content .doc-sec{border:1px solid var(--line);border-radius:20px;background:var(--panel);box-shadow:0 1px 3px rgba(17,24,39,.04);margin:0 0 16px;padding:0;scroll-margin-top:82px;transition:box-shadow .26s var(--ease),border-color .26s var(--ease)}
+.content .doc-sec:first-child{border-top:1px solid var(--line)}
+.content .doc-sec:hover{border-color:var(--line-2);box-shadow:0 16px 40px -22px rgba(17,24,39,.18)}
+.content .doc-sec[open]{border-color:var(--line)}
+.content .doc-sec>summary{cursor:default;pointer-events:none;padding:clamp(20px,3vh,28px) clamp(22px,3.2vw,32px) 8px;list-style:none}
+.content .doc-sec>summary::-webkit-details-marker{display:none}
+.content .doc-sec>summary::after{display:none}
+.content .doc-sec>summary h2{font-size:clamp(1.2rem,2.3vw,1.5rem)}
+.content .doc-sec .sec-body{padding:0 clamp(22px,3.2vw,32px) clamp(22px,3.4vh,30px);max-width:74ch}
+.content .doc-sec.field-notes{border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:20px;background:var(--panel);box-shadow:0 1px 3px rgba(17,24,39,.04);margin:0 0 16px;padding:clamp(22px,3vh,28px) clamp(22px,3.2vw,32px)}
+.content .doc-sec.field-notes h2{font-size:clamp(1.2rem,2.3vw,1.5rem)}
+.content .doc-sec.field-notes .fn-body{max-width:74ch}
+@media (max-width:900px){
+  .docs{grid-template-columns:1fr;width:calc(100vw - 28px);gap:0}
+  .toc{position:sticky;top:56px;z-index:20;display:flex;gap:8px;overflow-x:auto;max-height:none;background:var(--bg);padding:11px 2px;margin:0 0 6px;border-bottom:1px solid var(--line);-webkit-overflow-scrolling:touch}
+  .toc-h{display:none}
+  .toc a{flex:0 0 auto;white-space:nowrap;border-left:0;border:1px solid var(--line);border-radius:999px;padding:8px 15px;font-size:12.5px}
+  .toc a.active{color:var(--accent-2);border-color:var(--accent);background:var(--accent-soft)}
+}
+.site-foot{width:min(1120px,calc(100vw - 44px));margin:clamp(34px,5vh,60px) auto 0;padding:22px 2px clamp(30px,4vh,48px);color:var(--faint);font-size:12.5px;line-height:1.6}
+.site-foot p{margin:0 0 6px;max-width:82ch}
+.site-foot strong{color:var(--muted);font-weight:700}
+.site-foot .foot-fine{font-size:11.5px}
   </style>
-  <meta property="og:type" content="website"><meta property="og:url" content="https://trade-weth.github.io/">
-  <meta property="og:title" content="Trade WETH — Dashboard">
-  <meta property="og:description" content="Swap WETH for any token through on-chain liquidity. How wrapping works, approvals, fees, and exactly what to verify before you sign.">
-  <meta property="og:site_name" content="Trade WETH"><meta property="og:image" content="https://trade-weth.github.io/og-cover.png">
-  <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Trade WETH — independent dashboard">
-  <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Trade WETH — Dashboard">
-  <meta name="twitter:description" content="Swap WETH for any token through on-chain liquidity. How wrapping works, approvals, fees, and exactly what to verify before you sign."><meta name="twitter:image" content="https://trade-weth.github.io/og-cover.png">
-  <script type="application/ld+json">
+<meta content="website" property="og:type"/><meta content="https://trade-weth.github.io/" property="og:url"/>
+<meta content="Trade WETH — Dashboard" property="og:title"/>
+<meta content="Swap WETH for any token through on-chain liquidity. How wrapping works, approvals, fees, and exactly what to verify before you sign." property="og:description"/>
+<meta content="Trade WETH" property="og:site_name"/><meta content="https://trade-weth.github.io/og-cover.png" property="og:image"/>
+<meta content="1200" property="og:image:width"/><meta content="630" property="og:image:height"/><meta content="Trade WETH — independent dashboard" property="og:image:alt"/>
+<meta content="summary_large_image" name="twitter:card"/><meta content="Trade WETH — Dashboard" name="twitter:title"/>
+<meta content="Swap WETH for any token through on-chain liquidity. How wrapping works, approvals, fees, and exactly what to verify before you sign." name="twitter:description"/><meta content="https://trade-weth.github.io/og-cover.png" name="twitter:image"/>
+<script type="application/ld+json">
   {"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "@id": "https://trade-weth.github.io/#website", "url": "https://trade-weth.github.io/", "name": "Trade WETH", "inLanguage": "en"}, {"@type": "Thing", "@id": "https://trade-weth.github.io/#brand", "name": "WETH", "alternateName": ["Trade WETH", "WETH"], "description": "WETH — how to acquire, convert, and swap the token on-chain.", "sameAs": ["https://ethereum.org/wrapped-eth/", "https://github.com/gnosis/canonical-weth", "https://ethereum.org/developers/docs/standards/tokens/erc-20/", "https://www.coingecko.com/en/coins/weth", "https://docs.uniswap.org/contracts/v3/guides/swaps/single-swaps"]}, {"@type": "WebPage", "@id": "https://trade-weth.github.io/#webpage", "url": "https://trade-weth.github.io/", "name": "Trade WETH — Dashboard", "description": "Swap WETH for any token through on-chain liquidity. How wrapping works, approvals, fees, and exactly what to verify before you sign.", "isPartOf": {"@id": "https://trade-weth.github.io/#website"}, "about": {"@id": "https://trade-weth.github.io/#brand"}, "mainEntity": {"@id": "https://trade-weth.github.io/#brand"}, "inLanguage": "en", "dateModified": "2026-07-21"}, {"@type": "FAQPage", "@id": "https://trade-weth.github.io/#faq", "mainEntity": [{"@type": "Question", "name": "What is WETH?", "acceptedAnswer": {"@type": "Answer", "text": "WETH is Wrapped Ether — an ERC-20 token backed 1:1 by ETH held in the wrapping contract. It exists so DeFi protocols can handle ether through the same token interface as every other fungible asset."}}, {"@type": "Question", "name": "Is WETH the same as ETH?", "acceptedAnswer": {"@type": "Answer", "text": "Same value, different form. ETH is the native asset used for gas; WETH is its ERC-20 wrapper, which is what DEX pools and most DeFi contracts actually trade against. You need native ETH for gas either way."}}, {"@type": "Question", "name": "How do I convert WETH back to ETH?", "acceptedAnswer": {"@type": "Answer", "text": "Call withdraw on the wrapping contract: it burns your WETH and returns the same amount of ETH to your wallet, minus gas. This is a fixed one-for-one conversion — no pool, no price impact, no counterparty rate."}}, {"@type": "Question", "name": "Is WETH always 1:1 with ETH?", "acceptedAnswer": {"@type": "Answer", "text": "At the wrapping layer, yes — depositing one ETH mints one WETH, and withdrawing reverses it exactly. On exchanges, WETH trades against other tokens at market-determined rates, but those prices come from liquidity pools, not from the peg."}}, {"@type": "Question", "name": "What does it cost to trade WETH?", "acceptedAnswer": {"@type": "Answer", "text": "Gas in native ETH for every transaction — wrap, unwrap, approval, swap. A DEX swap adds the pool fee from the route and price impact from trade size versus pool depth. Read the minimum received before signing; that's your floor."}}, {"@type": "Question", "name": "Is the WETH contract safe?", "acceptedAnswer": {"@type": "Answer", "text": "Canonical mainnet WETH9 is a small, well-analyzed contract, and the canonical implementation is open for review — but that doesn't validate every interface, router, or chain variant. Smart-contract, approval, frontend, and phishing risks remain; verify the URL, network, token address, and spender before every signature."}}]}]}
   </script>
 </head>
 <body>
-  <a class="skip" href="#main">Skip to content</a>
-  <div class="shell">
-    <main class="main" id="main">
-      <header class="topbar">
-        <div class="topbar-left">
-          <button class="menu-btn" type="button" aria-label="Open navigation menu" aria-controls="sideNav" aria-expanded="false" data-nav-open><span class="bar"></span><span class="bar"></span><span class="bar"></span></button>
-          <a class="topbar-logo" href="./" aria-label="Trade WETH home"><img src="favicon.png" width="20" height="20" alt="Trade WETH logo"></a>
-          <h1 class="wordmark">Trade WETH</h1>
-        </div>
-        <div class="topbar-right">
-          <div class="ticker" aria-label="Live metrics">
-            <a class="tick" href="https://www.coingecko.com/en/coins/ethereum" target="_blank" rel="noopener noreferrer" aria-label="ETH"><span>ETH</span> <b id="sig-ethereum">…</b> <span class="ext" aria-hidden="true">↗</span></a>
-            <a class="tick" href="https://www.coingecko.com/en/coins/weth" target="_blank" rel="noopener noreferrer" aria-label="WETH"><span>WETH</span> <b id="sig-weth">…</b> <span class="ext" aria-hidden="true">↗</span></a>
-            </div>
-        </div>
-      </header>
-
-            <section class="hero2">
-        <div class="hero2-l">
-          <h2 class="hero2-h">Swap Wrapped Ether On-Chain</h2>
-          <p class="hero2-lead"><strong>Trade WETH</strong> from your own wallet: quotes, routes, and signing for exchanging Wrapped Ether on decentralized markets — no custody, no accounts.</p>
-          <div class="hero2-cta">
-            <a class="btn2 btn2-primary" href="dashboard/" target="_blank" rel="noopener noreferrer">Open the Trade WETH app <span class="go" aria-hidden="true">↗</span></a>
-            <a class="btn2 btn2-ghost" href="#what">How it works</a>
-          </div>
-        </div>
-        <div class="hero2-r">
-        <section class="swap-card" id="swap-preview" aria-labelledby="preview-title">
-          <div class="card-head">
-            <p class="card-title" id="preview-title">Preview</p>
-            <span class="preview-tag"><span aria-hidden="true"></span>Preview only</span>
-          </div>
-          <div class="leg">
-            <span class="asset" id="asset-from"><span class="tok"><img src="eth.png" alt="ETH token" width="24" height="24" loading="lazy" decoding="async"></span><b>ETH</b><svg class="chev-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span>
-            <span class="leg-amt"><span class="amount">0.00</span><span class="leg-sub">Preview</span></span>
-          </div>
-          <button class="swap-arrow" id="route-swap" type="button" aria-label="Swap preview direction" title="Swap preview direction">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M8 4v13M8 4L4 8M8 4l4 4M16 20V7M16 20l-4-4M16 20l4-4"/></svg>
-          </button>
-          <div class="leg">
-            <span class="asset" id="asset-to"><span class="tok"><img src="weth.png" alt="WETH token" width="24" height="24" loading="lazy" decoding="async"></span><b>WETH</b><svg class="chev-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span>
-            <span class="leg-amt"><span class="amount">0.00</span><span class="leg-sub">Preview</span></span>
-          </div>
-          <div class="route-panel">
-            <div class="route-info"><b id="route-name">ETH → WETH</b><span>Preview route</span></div>
-            <div class="route-tok"><span class="tok sm"><img src="weth.png" alt="WETH token" width="18" height="18" loading="lazy" decoding="async"></span> WETH</div>
-          </div>
-          <div class="route-row"><span>Pair</span><b>ETH / WETH</b></div>
-          <div class="route-row"><span>Network cost</span><b>Gas</b></div>
-          <a class="swap-cta" href="dashboard/" target="_blank" rel="noopener noreferrer"><svg class="cta-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4"/></svg>Go to Swap<span class="cta-go" aria-hidden="true">→</span></a>
-        </section>
-        </div>
-        <a class="scrollcue2" href="#what" aria-label="Scroll to learn more"><span>Scroll</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M12 19l-6-6M12 19l6-6"/></svg></a>
-      </section>
-
-            <div class="content">
-        <div class="lead-in reveal">
-          <p>WETH is ether in ERC-20 form — the same asset, wrapped so DeFi contracts can handle it through one token interface. Most people who <a href="https://ethereum.org/wrapped-eth/">wrap ETH</a> do it to trade: swap WETH for another token at a market-determined rate, then unwrap back to plain ETH when they're done. This is an independent, non-custodial dashboard — your wallet holds the keys and signs everything; nothing here takes custody of your assets.</p>
-          <div class="tbl spec"><table><tbody><tr><td>Token</td><td>Wrapped Ether (WETH), an ERC-20 token with 18 decimals</td></tr><tr><td>Backing / peg</td><td>1:1 with ETH — depositing ETH mints the same amount of WETH</td></tr><tr><td>Convert</td><td>Deposit ETH to mint WETH; withdraw to burn WETH and get ETH back, before gas</td></tr><tr><td>Networks</td><td>Canonical contract on Ethereum mainnet (chain ID 1); other networks use different contracts</td></tr><tr><td>Costs</td><td>Gas paid in native ETH; a DEX swap adds pool fees and price impact</td></tr><tr><td>Verify</td><td>Check the contract address, not the ticker</td></tr></tbody></table></div>
-        </div>
-
-        <details id="what" class="sec reveal">
-          <summary><h2>What is Trade WETH?</h2></summary>
-          <div class="sec-body"><p>WETH is ether repackaged as an <a href="https://ethereum.org/developers/docs/standards/tokens/erc-20/">ERC-20 token</a> — symbol WETH, 18 decimals, same value as ETH. Native ETH predates the ERC-20 standard, so it doesn't behave like other tokens inside smart contracts. WETH9 fixes that: deposit ETH, get an ERC-20 that any DeFi protocol can hold, transfer, and account for uniformly.</p><p>The peg is mechanical, not market-driven. Depositing ETH into the WETH9 contract mints the same amount of WETH; withdrawing burns WETH and returns the same amount of ETH. One WETH is a claim on one ETH held by the contract — there is no issuer discretion and no separate price formation at the wrapping layer.</p></div>
-        </details>
-
-        <details id="wrap" class="sec reveal">
-          <summary><h2>Getting in and out</h2></summary>
-          <div class="sec-body"><p>You get WETH two ways: deposit ETH directly into the wrapping contract (one-for-one before network fees), or acquire it on a DEX like any other token. Depositing is the clean route when you already hold ETH and just need the ERC-20 form.</p><p>Getting out is the reverse: a withdraw call burns your WETH and returns the same amount of ETH to your wallet. One thing trips people up — wrapping and unwrapping are not swaps. There's no pool, no price impact, no counterparty rate; it's a fixed smart-contract conversion, and the only cost is gas.</p></div>
-        </details>
-
-        <details id="swap" class="sec reveal">
-          <summary><h2>Swapping it on a DEX</h2></summary>
-          <div class="sec-body"><p>Trading WETH means exchanging it for another token at a rate set by available on-chain liquidity — not by the wrapping contract. You pick WETH and an output token, the interface requests quotes from pools and routers, and your wallet signs the final transaction. The execution contract moves your approved WETH through the pools and returns the output token straight to your wallet.</p><p>Three costs stack up: network gas (paid in native ETH), the pool fee baked into the route, and price impact from trade size relative to pool depth. Before signing, read the route, the minimum received, and the deadline — the quoted price and the executed price can drift if the market moves. If you're selling WETH for the first time from a wallet, expect an approval step first: an ERC-20 allowance (or a supported permit) granting the specific spender contract permission to transfer it. Approval is a separate transaction from the swap itself — a <a href="https://docs.uniswap.org/contracts/v3/guides/swaps/single-swaps">single-hop swap</a> needs the allowance in place before it can execute.</p></div>
-        </details>
-
-        <details id="vs" class="sec reveal">
-          <summary><h2>The token vs its native asset</h2></summary>
-          <div class="sec-body"><p>Same value, different plumbing. ETH is the native asset — you need it for gas on Ethereum, and it's what lives in your wallet when you're not touching DeFi. WETH is the ERC-20 wrapper — it's what most DEX pools, lending markets, and NFT contracts actually quote against, because it plugs into the standard token interface.</p><p>Practical rule: hold ETH for gas and general use; hold WETH when you're actively trading or deploying into protocols that take ERC-20. Keep enough native ETH to cover gas for your next few transactions — an all-WETH wallet can't pay to unwrap itself.</p></div>
-        </details>
-
-        <details id="fees" class="sec reveal">
-          <summary><h2>Costs and gas</h2></summary>
-          <div class="sec-body"><p>Every step costs gas, paid in native ETH: the wrap, the unwrap, each approval, and each swap. Gas varies with network congestion and the fee you set, and completion depends on on-chain inclusion and confirmation — timing isn't fixed.</p><p>A DEX swap layers two more costs on top of gas: the pool fee the route passes through, and price impact from how your order moves the pool. The quoted minimum received is your floor — if the route can't beat it before your deadline, the transaction reverts and you've still spent gas. Size your trade against the impact figure, not just the headline quote.</p></div>
-        </details>
-
-        <details id="safety" class="sec reveal">
-          <summary><h2>Is Trade WETH safe?</h2></summary>
-          <div class="sec-body"><p>Canonical WETH9 on Ethereum mainnet is a small, heavily scrutinized contract — but that says nothing about the interface, router, or chain you're using. The mainnet WETH sits at <a href="https://eth.blockscout.com/token/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2">0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2</a> on chain ID 1. WETH variants on other networks are different contracts entirely and must be verified separately.</p><p>Simple and audited is not risk-free. Non-custodial execution keeps keys in your wallet, but smart-contract, frontend, wallet, RPC, approval, routing, and liquidity risks all remain. Before you sign: confirm the URL, the network, the token address, the spender on any approval, and what the wallet prompt is actually asking for.</p></div>
-        </details>
-
-        <details id="troubleshoot" class="sec reveal">
-          <summary><h2>Problems and fixes</h2></summary>
-          <div class="sec-body"><p><strong>Wrong network.</strong> WETH exists on many chains under the same ticker with different contracts. Confirm the chain ID and address match the network you intend before signing — a mainnet address means nothing on an L2.</p><p><strong>Can't pay gas.</strong> Gas is paid in native ETH, not WETH. If your wallet is all WETH, you can't even afford the unwrap — keep a gas buffer.</p><p><strong>Swap won't execute.</strong> Usually a missing or insufficient ERC-20 allowance for the spender contract, or the route's price slipped past your minimum received before the deadline. Re-check the approval, re-quote, and resubmit.</p><p><strong>Wrong action.</strong> Wrapping ETH and swapping WETH are different operations. If you meant to convert ETH to WETH one-for-one, don't route it through a liquidity pool — use the deposit function.</p></div>
-        </details>
-
-        <details id="faq" class="sec reveal">
-          <summary><h2>WETH FAQ</h2></summary>
-          <div class="sec-body">
-          <details class="qa"><summary>What is WETH?</summary><div class="a"><p>WETH is Wrapped Ether — an ERC-20 token backed 1:1 by ETH held in the wrapping contract. It exists so DeFi protocols can handle ether through the same token interface as every other fungible asset.</p></div></details>
-          <details class="qa"><summary>Is WETH the same as ETH?</summary><div class="a"><p>Same value, different form. ETH is the native asset used for gas; WETH is its ERC-20 wrapper, which is what DEX pools and most DeFi contracts actually trade against. You need native ETH for gas either way.</p></div></details>
-          <details class="qa"><summary>How do I convert WETH back to ETH?</summary><div class="a"><p>Call withdraw on the wrapping contract: it burns your WETH and returns the same amount of ETH to your wallet, minus gas. This is a fixed one-for-one conversion — no pool, no price impact, no counterparty rate.</p></div></details>
-          <details class="qa"><summary>Is WETH always 1:1 with ETH?</summary><div class="a"><p>At the wrapping layer, yes — depositing one ETH mints one WETH, and withdrawing reverses it exactly. On exchanges, <a href="https://www.coingecko.com/en/coins/weth">WETH</a> trades against other tokens at market-determined rates, but those prices come from liquidity pools, not from the peg.</p></div></details>
-          <details class="qa"><summary>What does it cost to trade WETH?</summary><div class="a"><p>Gas in native ETH for every transaction — wrap, unwrap, approval, swap. A DEX swap adds the pool fee from the route and price impact from trade size versus pool depth. Read the minimum received before signing; that's your floor.</p></div></details>
-          <details class="qa"><summary>Is the WETH contract safe?</summary><div class="a"><p>Canonical mainnet WETH9 is a small, well-analyzed contract, and the canonical implementation is open for review — but that doesn't validate every interface, router, or chain variant. Smart-contract, approval, frontend, and phishing risks remain; verify the URL, network, token address, and spender before every signature.</p></div></details>
-          </div>
-        </details>
-
-        <section class="field-notes reveal" id="notes">
-          <h2>Notes before you trade weth</h2>
-          <div class="fn-body"><p>WETH is the easy part — one contract, one job, 1:1 by construction. The risk lives in everything around it: the route, the spender, the chain you're actually on.</p><p>The common mistake is approving a token by its ticker and logo instead of its contract address, then signing a swap on the wrong network with the wrong WETH.</p><p><strong>Before you sign</strong></p><ul><li>Match the contract address to the canonical deployment for that chain — never trust the symbol alone.</li><li>Keep native ETH in the wallet; an all-WETH balance can't pay the gas to unwrap itself.</li><li>On a DEX route, read the minimum received and price impact, not just the headline quote.</li></ul><p>Every address and mechanism on this page was checked against primary sources — last reviewed 21 July 2026.</p><p><strong>Independent reference — confirm the route in your own wallet.</strong></p></div>
-        </section>
-      </div>
-    </main>
-    <aside class="sidebar">
-      <div class="side-top">
-        <div class="brand">
-          <a class="brand-logo" href="./" aria-label="Trade WETH home"><img src="favicon.png" width="30" height="30" alt="Trade WETH logo"></a>
-          <p class="brand-name">WETH</p>
-        </div>
-        <button class="nav-toggle" type="button" aria-label="Close navigation menu" aria-controls="sideNav" aria-expanded="false"><span class="bar"></span><span class="bar"></span><span class="bar"></span></button>
-      </div>
-
-      <nav class="side-nav" id="sideNav" aria-label="Primary">
-        <p class="nav-label">Trade</p>
-        <a class="nav-item is-active" href="#swap-preview" aria-current="true">
-          <svg class="ni-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M7 10h11l-3-3M17 14H6l3 3"/></svg>
-          Swap preview
-        </a>
-        <p class="nav-label">On this page</p>
-        <details class="nav-group">
-          <summary>
-            <svg class="ni-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 5h10a3 3 0 0 1 3 3v11a2 2 0 0 0-2-2H4zM20 5h-1a3 3 0 0 0-3 3v11a2 2 0 0 1 2-2h2z"/></svg>
-            Guide sections
-            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-          </summary>
-          <div class="nav-sub"><a href="#what">What is Trade WETH?</a><a href="#wrap">Getting in and out</a><a href="#swap">Swapping it on a DEX</a><a href="#vs">The token vs its native asset</a><a href="#fees">Costs and gas</a><a href="#safety">Is Trade WETH safe?</a><a href="#troubleshoot">Problems and fixes</a><a href="#faq">FAQ</a></div>
-        </details>
-      </nav>
-
-      <div class="sidebar-foot">
-        <p class="disclose"><strong>Independent</strong> Trade WETH information dashboard. Not affiliated with any official product.</p>
-        <p class="fine">Live metrics are compiled from public APIs. Review your route in the official app before signing.</p>
-        <p class="fine">© 2026 Trade WETH dashboard.</p>
-      </div>
-    </aside>
-    <div class="scrim" data-scrim></div>
-  </div>
+<a class="skip" href="#main">Skip to content</a>
+<div class="shell">
+<main class="main" id="main">
+<header class="topbar">
+<div class="topbar-left">
+<h1 class="wordmark">Trade WETH</h1>
+</div>
+<div class="topbar-right">
+<div aria-label="Live metrics" class="ticker">
+<a aria-label="ETH" class="tick" href="https://www.coingecko.com/en/coins/ethereum" rel="noopener noreferrer" target="_blank"><span>ETH</span> <b id="sig-ethereum">…</b> <span aria-hidden="true" class="ext">↗</span></a>
+<a aria-label="WETH" class="tick" href="https://coinmarketcap.com/currencies/weth/" rel="noopener noreferrer" target="_blank"><span>WETH</span> <b id="sig-weth">…</b> <span aria-hidden="true" class="ext">↗</span></a>
+</div>
+</div>
+</header>
+<section class="hero2">
+<div class="hero2-l">
+<h2 class="hero2-h">Swap Wrapped Ether On-Chain</h2>
+<p class="hero2-lead"><strong>Trade WETH</strong> from your own wallet: quotes, routes, and signing for exchanging Wrapped Ether on decentralized markets — no custody, no accounts.</p>
+<div class="hero2-cta">
+<a class="btn2 btn2-primary" href="dashboard/" rel="noopener noreferrer" target="_blank">Open the Trade WETH app <span aria-hidden="true" class="go">↗</span></a>
+<a class="btn2 btn2-ghost" href="#what">How it works</a>
+</div>
+</div>
+<div class="hero2-r">
+<section aria-labelledby="preview-title" class="swap-card" id="swap-preview">
+<div class="card-head">
+<p class="card-title" id="preview-title">Preview</p>
+<span class="preview-tag"><span aria-hidden="true"></span>Preview only</span>
+</div>
+<div class="leg">
+<span class="asset" id="asset-from"><span class="tok"><img alt="ETH token" decoding="async" height="24" loading="lazy" src="eth.png" width="24"/></span><b>ETH</b><svg aria-hidden="true" class="chev-sm" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M6 9l6 6 6-6"></path></svg></span>
+<span class="leg-amt"><span class="amount">0.00</span><span class="leg-sub">Preview</span></span>
+</div>
+<button aria-label="Swap preview direction" class="swap-arrow" id="route-swap" title="Swap preview direction" type="button">
+<svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M8 4v13M8 4L4 8M8 4l4 4M16 20V7M16 20l-4-4M16 20l4-4"></path></svg>
+</button>
+<div class="leg">
+<span class="asset" id="asset-to"><span class="tok"><img alt="WETH token" decoding="async" height="24" loading="lazy" src="weth.png" width="24"/></span><b>WETH</b><svg aria-hidden="true" class="chev-sm" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M6 9l6 6 6-6"></path></svg></span>
+<span class="leg-amt"><span class="amount">0.00</span><span class="leg-sub">Preview</span></span>
+</div>
+<div class="route-panel">
+<div class="route-info"><b id="route-name">ETH → WETH</b><span>Preview route</span></div>
+<div class="route-tok"><span class="tok sm"><img alt="WETH token" decoding="async" height="18" loading="lazy" src="weth.png" width="18"/></span> WETH</div>
+</div>
+<div class="route-row"><span>Pair</span><b>ETH / WETH</b></div>
+<div class="route-row"><span>Network cost</span><b>Gas</b></div>
+<a class="swap-cta" href="dashboard/" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" class="cta-ico" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4"></path></svg>Go to Swap<span aria-hidden="true" class="cta-go">→</span></a>
+</section>
+</div>
+<a aria-label="Scroll to learn more" class="scrollcue2" href="#what"><span>Scroll</span><svg fill="none" stroke="currentColor" stroke-width="2.2" viewbox="0 0 24 24"><path d="M12 5v14M12 19l-6-6M12 19l6-6"></path></svg></a>
+</section>
+<div class="content">
+<div class="lead-in reveal">
+<div class="feat">
+<div class="feat-l">
+<h2>Wrapped Ether (WETH) Conversion &amp; Router Overview</h2>
+<p class="feat-lead">WETH is ether in ERC-20 form — the same asset, wrapped so DeFi contracts can handle it through one token interface.</p>
+<div class="feat-cta"><a class="feat-btn" href="dashboard/" rel="noopener noreferrer" target="_blank">Open the App <span aria-hidden="true" class="arr">→</span></a></div>
+<details class="feat-more">
+<summary class="feat-readmore">Read more <svg aria-hidden="true" class="chev" fill="none" stroke="currentColor" stroke-width="2.2" viewbox="0 0 24 24"><path d="M6 9l6 6 6-6"></path></svg></summary>
+<div class="feat-detail">
+<p>Most people who <a href="https://ethereum.org/wrapped-eth/">wrap ETH</a> do it to trade: swap WETH for another token at a market-determined rate, then unwrap back to plain ETH when they're done. This is an independent, non-custodial dashboard — your wallet holds the keys and signs everything; nothing here takes custody of your assets.</p>
+<div class="feat-facts">
+<div class="feat-fact"><span class="fl">Token</span><span class="fv">Wrapped Ether (WETH), an ERC-20 token with 18 decimals</span></div>
+<div class="feat-fact"><span class="fl">Backing / peg</span><span class="fv">1:1 with ETH — depositing ETH mints the same amount of WETH</span></div>
+<div class="feat-fact"><span class="fl">Convert</span><span class="fv">Deposit ETH to mint WETH; withdraw to burn WETH and get ETH back, before gas</span></div>
+<div class="feat-fact"><span class="fl">Networks</span><span class="fv">Canonical contract on Ethereum mainnet (chain ID 1); other networks use different contracts</span></div>
+<div class="feat-fact"><span class="fl">Costs</span><span class="fv">Gas paid in native ETH; a DEX swap adds pool fees and price impact</span></div>
+<div class="feat-fact"><span class="fl">Verify</span><span class="fv">Check the contract address, not the ticker</span></div>
+</div>
+</div>
+</details>
+</div>
+<div class="feat-r"><span class="feat-badge"><img alt="Trade WETH" height="72" src="weth.png" width="72"/></span></div>
+</div>
+</div>
+<div class="docs">
+<nav aria-label="On this page" class="toc">
+<p class="toc-h">On this page</p>
+<a href="#what">What is Wrapped Ether (WETH)?</a>
+<a href="#wrap">Getting in and out</a>
+<a href="#swap">Swapping it on a DEX</a>
+<a href="#vs">The token vs its native asset</a>
+<a href="#fees">Costs and gas</a>
+<a href="#safety">Is Trade WETH safe?</a>
+<a href="#troubleshoot">Problems and fixes</a>
+<a href="#faq">WETH FAQ</a>
+<a href="#notes">Notes before you trade weth</a>
+</nav>
+<div class="doc-main">
+<details class="sec reveal doc-sec" id="what" open="">
+<summary><h2>What is Wrapped Ether (WETH)?</h2></summary>
+<div class="sec-body"><p>WETH is ether repackaged as an <a href="https://docs.openzeppelin.com/contracts/5.x/api/token/erc20" rel="noopener noreferrer" target="_blank">ERC-20 token standard</a> — symbol WETH, 18 decimals, same value as ETH. Native ETH predates the ERC-20 standard, so it doesn't behave like other tokens inside smart contracts. WETH9 fixes that: deposit ETH, get an ERC-20 that any DeFi protocol can hold, transfer, and account for uniformly.</p><p>The peg is mechanical, not market-driven. Depositing ETH into the WETH9 contract mints the same amount of WETH; withdrawing burns WETH and returns the same amount of ETH. One WETH is a claim on one ETH held by the contract — there is no issuer discretion and no separate price formation at the wrapping layer.</p></div>
+</details>
+<details class="sec reveal doc-sec" id="wrap" open="">
+<summary><h2>Getting in and out</h2></summary>
+<div class="sec-body"><p>You get WETH two ways: deposit ETH directly into the wrapping contract (one-for-one before network fees), or acquire it on a DEX like any other token. Depositing is the clean route when you already hold ETH and just need the ERC-20 form.</p><p>Getting out is the reverse: a withdraw call burns your WETH and returns the same amount of ETH to your wallet. Wrapping and unwrapping are not swaps: there's no pool, no price impact, and no counterparty rate; it's a fixed smart-contract conversion, and the only cost is gas.</p></div>
+</details>
+<details class="sec reveal doc-sec" id="swap" open="">
+<summary><h2>Swapping it on a DEX</h2></summary>
+<div class="sec-body"><p>Trading WETH means exchanging it for another token at a rate set by available on-chain liquidity — not by the wrapping contract. In an <a href="https://en.wikipedia.org/wiki/Automated_market_maker" rel="noopener noreferrer" target="_blank">automated market maker</a>, pools and routers use available reserves to quote the route; you pick WETH and an output token, and your wallet signs the final transaction. The execution contract moves your approved WETH through the pools and returns the output token straight to your wallet.</p><p>Three costs stack up: network gas (paid in native ETH), the pool fee baked into the route, and price impact from trade size relative to pool depth. The route reports the minimum received and deadline; the quoted price and the executed price can drift if the market moves. If you're selling WETH for the first time from a wallet, expect an approval step first: an ERC-20 allowance (or a supported permit) granting the specific spender contract permission to transfer it. Approval is a separate transaction from the swap itself — a <a href="https://developers.uniswap.org/docs/protocols/v3/guides/swapping/single-hop-swapping" rel="noopener noreferrer" target="_blank">single-hop swap</a> needs the allowance in place before it can execute.</p></div>
+</details>
+<details class="sec reveal doc-sec" id="vs" open="">
+<summary><h2>The token vs its native asset</h2></summary>
+<div class="sec-body"><p>ETH and WETH have the same value at the wrapping layer but different plumbing. ETH is the native asset — you need it for gas on Ethereum, and it's what lives in your wallet when you're not touching DeFi. WETH is the ERC-20 wrapper — it's what most DEX pools, lending markets, and NFT contracts actually quote against, because it plugs into the standard token interface.</p><p>Hold ETH for gas and general use; hold WETH when you're actively trading or deploying into protocols that take ERC-20. An all-WETH wallet can't pay to unwrap itself because transaction fees are charged in native ETH.</p></div>
+</details>
+<details class="sec reveal doc-sec" id="fees" open="">
+<summary><h2>Costs and gas</h2></summary>
+<div class="sec-body"><p>Every step costs gas, paid in native ETH: the wrap, the unwrap, each approval, and each swap; the <a href="https://www.ledger.com/academy/topics/crypto/ethereum-gas-fees-explained" rel="noopener noreferrer" target="_blank">Ethereum gas fee guide</a> explains the fee mechanism. Gas varies with network congestion and the fee you set, and completion depends on on-chain inclusion and confirmation — timing isn't fixed.</p><p>A DEX swap layers two more costs on top of gas: the pool fee the route passes through, and price impact from how your order moves the pool. The quoted minimum received is your floor — if the route can't beat it before your deadline, the transaction reverts and you've still spent gas. This price difference between the quote and execution is <a href="https://chain.link/article/slippage-in-crypto" rel="noopener noreferrer" target="_blank">slippage in crypto</a>; size your trade against the impact figure, not just the headline quote.</p></div>
+</details>
+<details class="sec reveal doc-sec" id="safety" open="">
+<summary><h2>Is Trade WETH safe?</h2></summary>
+<div class="sec-body"><p>Trade WETH is safe to use only when the contract, interface, router, and chain match the transaction you intend to make. The <a href="https://etherscan.io/address/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2" rel="noopener noreferrer" target="_blank">canonical WETH9 contract</a> on Ethereum mainnet is 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2 on chain ID 1. WETH variants on other networks are different contracts entirely and must be verified separately.</p><p>Non-custodial execution keeps keys in your wallet, but smart-contract, frontend, wallet, RPC, approval, routing, and liquidity risks all remain. Before you sign, confirm the URL, the network, the token address, the spender on any approval, and what the wallet prompt is actually asking for.</p></div>
+</details>
+<details class="sec reveal doc-sec" id="troubleshoot" open="">
+<summary><h2>Problems and fixes</h2></summary>
+<div class="sec-body"><p><strong>Wrong network.</strong> WETH exists on many chains under the same ticker with different contracts. Match the chain ID and address to the network you intend — a mainnet address means nothing on an L2.</p><p><strong>Can't pay gas.</strong> Gas is paid in native ETH, not WETH. If your wallet is all WETH, you can't even afford the unwrap.</p><p><strong>Swap won't execute.</strong> Usually the spender contract has a missing or insufficient ERC-20 allowance, or the route's price slipped past your minimum received before the deadline. Re-check the approval, re-quote, and resubmit.</p><p><strong>Wrong action.</strong> Wrapping ETH and swapping WETH are different operations. To convert ETH to WETH one-for-one, use the deposit function instead of routing through a liquidity pool.</p></div>
+</details>
+<details class="sec reveal doc-sec" id="faq" open="">
+<summary><h2>WETH FAQ</h2></summary>
+<div class="sec-body">
+<details class="qa"><summary>What is WETH?</summary><div class="a"><p>WETH is Wrapped Ether — an ERC-20 token backed 1:1 by ETH held in the wrapping contract, so DeFi protocols can handle ether through the same token interface as other fungible assets.</p></div></details>
+<details class="qa"><summary>Is WETH the same as ETH?</summary><div class="a"><p>WETH and ETH have the same value at the wrapping layer but different forms: ETH is the native asset used for gas, while WETH is the ERC-20 wrapper that DEX pools and DeFi contracts can trade through a standard token interface.</p></div></details>
+<details class="qa"><summary>How do I convert WETH back to ETH?</summary><div class="a"><p>Call withdraw on the wrapping contract; it burns your WETH and returns the same amount of ETH to your wallet, minus gas. The conversion is fixed one-for-one, with no pool, price impact, or counterparty rate.</p></div></details>
+<details class="qa"><summary>Is WETH always 1:1 with ETH?</summary><div class="a"><p>At the wrapping layer, yes: depositing one ETH mints one WETH, and withdrawing reverses it exactly. On exchanges, WETH trades against other tokens at market-determined rates set by liquidity pools, not by the peg.</p></div></details>
+<details class="qa"><summary>What does it cost to trade WETH?</summary><div class="a"><p>Each transaction uses gas in native ETH: wrap, unwrap, approval, or swap. A DEX swap also adds the route's pool fee and price impact from trade size versus pool depth; the minimum received is the execution floor.</p></div></details>
+<details class="qa"><summary>Is the WETH contract safe?</summary><div class="a"><p>Canonical mainnet WETH9 is at 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2 on chain ID 1; WETH variants on other networks are different contracts, so the contract and chain must match the transaction.</p></div></details>
+</div>
+</details>
+<section class="field-notes reveal doc-sec" id="notes">
+<h2>Notes before you trade weth</h2>
+<div class="fn-body"><p>Before trading WETH, use the contract address, chain ID, spender, minimum received, and price impact as your working checklist.</p><p><strong>Before you sign</strong></p><ul><li>Match the contract address to the canonical deployment for that chain — never trust the symbol alone.</li><li>Keep native ETH in the wallet; an all-WETH balance can't pay the gas to unwrap itself.</li><li>On a DEX route, read the minimum received and price impact, not just the headline quote.</li></ul><p>Every address and mechanism on this page was checked against primary sources — last reviewed 21 July 2026.</p></div>
+</section>
+</div>
+</div>
+</div>
+<footer class="site-foot"><div class="wrap">Trade WETH Guide &amp; Technical Reference · <a href="dashboard/" rel="noopener noreferrer" target="_blank">Open Trade WETH App ↗</a> · © 2026</div></footer>
+</main>
+</div>
 <script>
 /* Trade WETH: route preview, mobile nav, scroll-reveal. */
 (function () {
@@ -595,6 +656,17 @@ html.js .reveal.in { opacity: 1; transform: none; }
     if (el && el.tagName === "DETAILS") { el.open = true; el.classList.add("in"); }
   });
 
+  })();
+  (function(){
+    var links=[].slice.call(document.querySelectorAll(".toc a"));
+    if(!links.length)return;
+    var secs=[].slice.call(document.querySelectorAll(".doc-main [id]")).filter(function(s){return document.querySelector('.toc a[href="#'+s.id+'"]');});
+    if(!secs.length)return;
+    function setActive(id){links.forEach(function(a){a.classList.toggle("active",a.getAttribute("href")==="#"+id);});}
+    function update(){var cur=secs[0];for(var i=0;i<secs.length;i++){if(secs[i].getBoundingClientRect().top-120<=0)cur=secs[i];else break;}if(window.innerHeight+window.scrollY>=document.documentElement.scrollHeight-4)cur=secs[secs.length-1];if(cur)setActive(cur.id);}
+    window.addEventListener("scroll",update,{passive:true});
+    window.addEventListener("resize",update);
+    update();
   })();
   </script>
 </body>
