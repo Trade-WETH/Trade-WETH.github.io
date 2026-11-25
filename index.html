@@ -1,241 +1,296 @@
 <!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Trade WETH — WETH Trading, Liquidity & Collateral Guide</title>
-<meta name="description" content="Trade WETH across AMM pools, lending markets and perps. See how WETH works as the base pair, a liquidity position, and collateral — plus impermanent loss and liquidation risk.">
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Trade WETH — market and limit orders on Ethereum</title>
+<meta name="description" content="Trade WETH on Ethereum DEXs with market or limit orders. Set slippage, read the quote and sign from your own wallet. Non-custodial, for active traders.">
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#f4f5f8">
 <link rel="canonical" href="https://trade-weth.github.io/">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Trade WETH">
-<meta property="og:url" content="https://trade-weth.github.io/">
-<meta property="og:image" content="https://trade-weth.github.io/og.png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Trade WETH">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;600;700&family=Albert+Sans:wght@500;600;700&display=swap">
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "@id": "https://trade-weth.github.io/#website", "url": "https://trade-weth.github.io/", "name": "Trade WETH — WETH Trading, Liquidity & Collateral Guide"}, {"@type": "WebPage", "@id": "https://trade-weth.github.io/#webpage", "url": "https://trade-weth.github.io/", "name": "Trade WETH — WETH Trading, Liquidity & Collateral Guide", "isPartOf": {"@id": "https://trade-weth.github.io/#website"}, "description": "Trade WETH across AMM pools, lending markets and perps. See how WETH works as the base pair, a liquidity position, and collateral — plus impermanent loss and liquidation risk.", "datePublished": "2026-11-08", "dateModified": "2026-11-08"}, {"@type": "SoftwareApplication", "name": "Trade WETH", "applicationCategory": "FinanceApplication", "operatingSystem": "Web", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://trade-weth.github.io/"}, {"@type": "ListItem", "position": 2, "name": "Wrapping"}, {"@type": "ListItem", "position": 3, "name": "Trade WETH"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What does it mean to trade WETH instead of ETH?", "acceptedAnswer": {"@type": "Answer", "text": "It means interacting with the ERC-20 wrapped form of ether inside DeFi contracts — swapping it in pools, supplying it as liquidity, or posting it as collateral — rather than holding native ETH outside those contracts. Pools, lending markets, and perpetuals venues are built to price and settle in WETH."}}, {"@type": "Question", "name": "Why do most AMM pools pair against WETH?", "acceptedAnswer": {"@type": "Answer", "text": "Pairing every token against WETH instead of against each other concentrates liquidity into fewer, deeper pools, the same way currency markets quote against a dominant reference currency. It gives any token the shortest, deepest route to the rest of the market."}}, {"@type": "Question", "name": "What is impermanent loss when I trade WETH as liquidity?", "acceptedAnswer": {"@type": "Answer", "text": "It is the gap between your pooled WETH position's value and the value of simply holding the same assets separately. It widens as the price moves further from where you deposited and narrows back if the price returns, so it is realized only when you withdraw."}}, {"@type": "Question", "name": "Can I use WETH as collateral to borrow against it?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Lending markets accept WETH as collateral and let you borrow another asset against it up to a loan-to-value limit, which is how most leveraged WETH trades are funded. The collateral remains at risk of liquidation if its price falls far enough relative to the loan."}}, {"@type": "Question", "name": "How is liquidation risk measured on a WETH position?", "acceptedAnswer": {"@type": "Answer", "text": "Lending markets track a health factor or similar ratio that falls as WETH's price drops relative to the debt it backs. Crossing the liquidation threshold triggers an automatic, penalized sale of collateral to repay the loan."}}, {"@type": "Question", "name": "Is trading WETH on a perpetuals exchange different from spot trading?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Perpetuals let you trade WETH's price directly with leverage and ongoing funding payments, without moving the underlying token through a pool, while spot trading exchanges the actual WETH balance against another asset."}}, {"@type": "Question", "name": "Do I need to wrap ETH every time before I trade WETH?", "acceptedAnswer": {"@type": "Answer", "text": "Only once per batch of ETH you intend to use. Wrapping is a one-time step that converts ETH into the ERC-20 balance the pools and markets require; the wrapped WETH then stays usable across as many trades as you want without wrapping again."}}]}]}</script>
+<meta property="og:type" content="website"><meta property="og:site_name" content="Trade WETH"><meta property="og:title" content="Trade WETH — market and limit orders on Ethereum"><meta property="og:description" content="Trade WETH on Ethereum DEXs with market or limit orders. Set slippage, read the quote and sign from your own wallet. Non-custodial, for active traders."><meta property="og:url" content="https://trade-weth.github.io/"><meta property="og:image" content="https://trade-weth.github.io/og-image.png">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Trade WETH — market and limit orders on Ethereum"><meta name="twitter:description" content="Trade WETH on Ethereum DEXs with market or limit orders. Set slippage, read the quote and sign from your own wallet. Non-custodial, for active traders."><meta name="twitter:image" content="https://trade-weth.github.io/og-image.png">
+<link rel="icon" type="image/svg+xml" href="icon.svg">
+<link rel="apple-touch-icon" href="icon.svg">
+<link rel="manifest" href="manifest.webmanifest">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://trade-weth.github.io/#organization","name":"Trade WETH","url":"https://trade-weth.github.io/","description":"Trade WETH on Ethereum DEXs with market or limit orders. Set slippage, read the quote and sign from your own wallet. Non-custodial, for active traders.","logo":{"@type":"ImageObject","@id":"https://trade-weth.github.io/#logo","url":"https://trade-weth.github.io/icon.svg","caption":"Trade WETH"}},{"@type":"WebSite","@id":"https://trade-weth.github.io/#website","url":"https://trade-weth.github.io/","publisher":{"@id":"https://trade-weth.github.io/#organization"},"name":"Trade WETH"},{"@type":"WebPage","@id":"https://trade-weth.github.io/#webpage","url":"https://trade-weth.github.io/","publisher":{"@id":"https://trade-weth.github.io/#organization"},"name":"Trade WETH — market and limit orders on Ethereum","isPartOf":{"@id":"https://trade-weth.github.io/#website"},"mainEntity":{"@id":"https://trade-weth.github.io/#app"},"breadcrumb":{"@id":"https://trade-weth.github.io/#breadcrumb"}},{"@type":"BreadcrumbList","@id":"https://trade-weth.github.io/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://trade-weth.github.io/"},{"@type":"ListItem","position":2,"name":"Trade WETH","item":"https://trade-weth.github.io/"}]},{"@type":"WebApplication","@id":"https://trade-weth.github.io/#app","url":"https://trade-weth.github.io/","publisher":{"@id":"https://trade-weth.github.io/#organization"},"name":"Trade WETH","applicationCategory":"FinanceApplication","operatingSystem":"Web","description":"Trade WETH on Ethereum DEXs with market or limit orders. Set slippage, read the quote and sign from your own wallet. Non-custodial, for active traders.","isPartOf":{"@id":"https://trade-weth.github.io/#website"}},{"@type":"FAQPage","@id":"https://trade-weth.github.io/#faq","isPartOf":{"@id":"https://trade-weth.github.io/#webpage"},"about":{"@id":"https://trade-weth.github.io/#app"},"name":"Trade WETH FAQ","mainEntity":[{"@type":"Question","name":"Can I trade WETH with a limit order?","acceptedAnswer":{"@type":"Answer","text":"Yes, through order protocols that fill your order when the market reaches your price. You sign the order from your wallet, it can expire if the price is not reached, and a filler settles it on-chain."}},{"@type":"Question","name":"Why do limit orders need WETH instead of ETH?","acceptedAnswer":{"@type":"Answer","text":"Order protocols pull tokens from your wallet using an ERC-20 allowance. Native ETH has no allowance mechanism, while WETH does, so you wrap ETH into WETH first and approve it."}},{"@type":"Question","name":"What is the difference between slippage and price impact?","acceptedAnswer":{"@type":"Answer","text":"Price impact is how far your own trade moves the pool price, and it grows with order size. Slippage tolerance is the extra movement you accept between quote and execution before a market swap reverts."}},{"@type":"Question","name":"Which pairs can I trade WETH against?","acceptedAnswer":{"@type":"Answer","text":"WETH/USDC and WETH/USDT are the pairs most traders use, and other ERC-20 pairs are available where pools exist. Depth differs by pair and route, so check the quote for each trade."}},{"@type":"Question","name":"Do I need ETH to trade WETH?","acceptedAnswer":{"@type":"Answer","text":"Yes. Gas on Ethereum is paid in native ETH, so keep a small ETH balance for the approval and the swap or fill, even when your trading funds are in WETH."}},{"@type":"Question","name":"Does the interface hold my WETH?","acceptedAnswer":{"@type":"Answer","text":"No. It is non-custodial: your WETH stays in your wallet, and you sign every approval, swap and order yourself. The interface never has access to your keys."}}]}]}
+</script>
 <style>
-:root{--bg:#0A110F;--surface:#121D18;--text:#E7F2EC;--muted:#829489;--accent:#2FD39B;--accent-ink:#042017;--radius:16px;--display:"Albert Sans";--body:"Albert Sans"}
+@font-face{font-family:'Inter';src:url('assets/inter.woff2') format('woff2');font-weight:400 700;font-display:swap}
+@font-face{font-family:'Space Grotesk';src:url('assets/space-grotesk.woff2') format('woff2');font-weight:500 700;font-display:swap}
+:root{
+ --bg:#f4f5f8;--card:#fff;--ink:#121527;--muted:#737b88;--faint:#aeb4bf;
+ --line:#eaecf2;--line-2:#e0e3eb;--panel:#f6f7fa;--panel-2:#eceef4;
+ --accent:#222b45;--accent-hover:#303b5e;--accent-ink:#3442a8;--accent-soft:#e8ebfa;--accent-on:#ffffff;--promo:#eef0fa;--text-2:#4b5563;
+ --shadow:0 1px 2px rgba(13,17,28,.04),0 24px 56px -40px rgba(13,17,28,.24);--pico-bg:#fff;--pico-ring:rgba(13,17,28,.06);
+ --ease:cubic-bezier(.2,.7,.2,1);
+ --head:"Space Grotesk","Arial",sans-serif;--body:"Inter","Arial",sans-serif;color-scheme:light}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:2rem}
-body{margin:0;background:var(--bg);color:var(--text);font:400 1rem/1.65 var(--body);-webkit-font-smoothing:antialiased}
-::selection{background:var(--accent);color:var(--accent-ink)}
-a{color:inherit;text-underline-offset:.25em}
-a:hover{color:var(--accent)}
-button,input,select,textarea{font:inherit}
-input,select{color:var(--text);accent-color:var(--accent)}
-:focus-visible{outline:3px solid var(--accent);outline-offset:5px}
-img,svg{max-width:100%;vertical-align:middle}
-svg{fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
-.c34439f{width:min(1200px,calc(100% - 4rem));margin-inline:auto}
-.cd2f4a4{min-height:92px;display:flex;align-items:center;justify-content:space-between;gap:2rem;border-bottom:1px solid color-mix(in srgb,var(--text) 12%,transparent)}
-.ca5c58b{display:inline-flex;align-items:center;gap:.7rem;text-decoration:none;font:650 1.3rem/1.2 var(--display);letter-spacing:-.04em}
-.c77e095{display:grid;place-items:center;width:36px;height:36px;background:var(--accent);color:var(--accent-ink);border-radius:calc(var(--radius)*.5)}
-.c77e095 svg{width:23px;height:23px}
-.c4f210f{display:flex;align-items:center;gap:1.8rem;font-size:.875rem;font-weight:550}
-.c4f210f a{text-decoration:none}
-.c4f210f .cec21ac{padding:.6rem 1rem;border:1px solid color-mix(in srgb,var(--text) 18%,transparent);border-radius:var(--radius)}
-.cc50fbc{padding-block:1.5rem;font-size:.8rem;color:var(--muted);overflow-wrap:anywhere}
-.c0733cf{display:flex;flex-wrap:wrap;align-items:center;gap:.55rem;margin:0;padding:0;list-style:none}
-.c0733cf a{text-decoration:none}
-.c0733cf [aria-current="page"]{color:var(--text)}
-.c178889{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);align-items:start;gap:clamp(1.75rem,5vw,4rem);padding-block:2rem 3.5rem}
-.c7908fd{min-width:0}
-.c00821f{display:inline-flex;align-items:center;gap:.55rem;margin:0 0 1.25rem;color:var(--muted);font-size:.875rem}
-.c00821f::before{content:"";width:.5rem;height:.5rem;border-radius:50%;background:var(--accent);box-shadow:0 0 0 5px color-mix(in srgb,var(--accent) 12%,transparent)}
-h1{margin:0;font:550 clamp(2.65rem,5vw,4.75rem)/1.06 var(--display);letter-spacing:-.055em;overflow-wrap:anywhere;text-wrap:balance}
-h1 em{color:var(--accent);font-style:normal}
-.c580b71{max-width:36rem;margin:1.6rem 0 2rem;color:var(--muted);font-size:1.1rem;line-height:1.8}
-.c2770d3{display:inline-flex;justify-content:center;align-items:center;gap:1.4rem;min-height:54px;padding:.9rem 1.4rem;background:linear-gradient(135deg,var(--accent),color-mix(in srgb,var(--accent) 86%,var(--text)));color:var(--accent-ink);border:1px solid color-mix(in srgb,var(--accent-ink) 12%,transparent);border-radius:var(--radius);font-weight:650;text-decoration:none;box-shadow:0 8px 22px color-mix(in srgb,var(--accent) 20%,transparent);transition:transform .2s,box-shadow .2s}
-.c2770d3 svg{width:20px;height:20px;flex:none}
-.c2770d3:hover{color:var(--accent-ink);transform:translateY(-2px);box-shadow:0 12px 26px color-mix(in srgb,var(--accent) 28%,transparent)}
-.c29c3e3{display:flex;align-items:center;gap:.5rem;margin:1.2rem 0 0;color:var(--muted);font-size:.8rem}
-.c29c3e3 svg{width:16px;height:16px;color:var(--accent)}
-.cc9c75e{position:relative;min-width:0;padding:12px;border:1px solid color-mix(in srgb,var(--accent) 18%,transparent);border-radius:calc(var(--radius) + 12px);background:linear-gradient(145deg,color-mix(in srgb,var(--accent) 13%,var(--bg)),color-mix(in srgb,var(--surface) 70%,var(--bg)));box-shadow:0 28px 64px -28px color-mix(in srgb,var(--text) 24%,transparent)}
-.cb134d6{padding:clamp(1.25rem,3vw,2rem);background:var(--surface);border:1px solid color-mix(in srgb,var(--text) 9%,transparent);border-radius:var(--radius)}
-.cdaf714{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-bottom:1.7rem}
-.cdaf714 h2{margin:0;font:600 1.2rem/1.3 var(--display);letter-spacing:-.025em}
-.c9721be{display:inline-flex;align-items:center;gap:.4rem;color:var(--muted);font-size:.72rem;white-space:nowrap}
-.c9721be::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent)}
-.c8df5c2{display:grid;grid-template-columns:minmax(0,1fr) 36px minmax(0,1fr);align-items:center;gap:.7rem;margin-bottom:1.7rem}
-.c3161f7{min-width:0;padding:.9rem 1rem;background:color-mix(in srgb,var(--bg) 70%,var(--surface));border:1px solid color-mix(in srgb,var(--text) 9%,transparent);border-radius:calc(var(--radius)*.7)}
-.ce34fec{display:block;margin-bottom:.65rem;color:var(--muted);font-size:.75rem}
-.c9d357c{display:flex;align-items:center;gap:.5rem;min-height:32px;font:600 .95rem/1.3 var(--display);overflow-wrap:anywhere}
-.c9d357c img,.c9d357c svg{width:auto;height:32px;max-width:100%;object-fit:contain}
-.c44dc95{display:grid;place-items:center;width:36px;height:36px;border:1px solid color-mix(in srgb,var(--accent) 24%,transparent);border-radius:50%;color:var(--accent)}
-.c44dc95 svg{width:18px;height:18px}
-.c956aed{display:block;margin-bottom:.55rem;font-size:.8rem;font-weight:550}
-.c91c005{display:flex;align-items:center;gap:.5rem;padding:.7rem 1rem;border:1px solid color-mix(in srgb,var(--text) 19%,transparent);border-radius:calc(var(--radius)*.7);background:var(--bg);transition:border-color .2s}
-.c91c005:focus-within{border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 13%,transparent)}
-.c91c005 input{width:100%;min-width:0;padding:0;border:0;border-radius:0;background:var(--bg);font:550 1.9rem/1.5 var(--display);font-variant-numeric:tabular-nums}
-.c91c005 input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-.c91c005 span{color:var(--muted);font-size:.8rem}
-.c352f21{margin:.5rem 0 1.2rem;color:var(--muted);font-size:.73rem}
-.c9588d7{margin:-.65rem 0 1rem;color:var(--text);font-size:.8rem}
-.c1e41cb{padding:1.2rem;border:1px solid color-mix(in srgb,var(--accent) 18%,transparent);border-radius:calc(var(--radius)*.7);background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 8%,var(--surface)),var(--surface))}
-.c87a38d{display:block;color:var(--muted);font-size:.8rem}
-.c109e08{display:block;margin:.35rem 0 1.2rem;font:600 clamp(1.65rem,3vw,2.25rem)/1.25 var(--display);letter-spacing:-.035em;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
-.c109e08 small{color:var(--muted);font:400 .8rem/1.5 var(--body);letter-spacing:0}
-.c7f3655{display:grid;grid-template-columns:1fr 1fr;gap:1rem;padding-top:1rem;border-top:1px solid color-mix(in srgb,var(--text) 10%,transparent)}
-.c3c15d4{display:block;color:var(--muted);font-size:.72rem}
-.c40de34{display:block;margin-top:.2rem;font-size:.9rem;font-weight:600;font-variant-numeric:tabular-nums}
-.cb134d6 .c2770d3{width:100%;margin-top:1.3rem;justify-content:space-between}
-.c97b061{margin-top:1rem;color:var(--muted);font-size:.73rem}
-.c97b061 summary{cursor:pointer;width:fit-content;text-underline-offset:.2em}
-.c97b061 summary:hover{color:var(--text)}
-.c97b061 p{margin:.7rem 0 0}
-.c2c00e8{margin:0;font:550 1.75rem/1.2 var(--display);letter-spacing:-.035em}
-.c1bfa07{padding:2rem 2.25rem;background:var(--surface);border:1px solid color-mix(in srgb,var(--text) 10%,transparent);border-radius:var(--radius)}
-.c1bfa07 .c2c00e8{margin-bottom:1.5rem}
-.c33ae0a{max-width:100%;overflow-x:auto;overscroll-behavior-inline:contain}
-.cf3ade9{width:100%;border-collapse:collapse;text-align:left;font-size:.9rem}
-.cf3ade9 caption{text-align:left;margin-bottom:1rem;color:var(--muted)}
-.cf3ade9 th,.cf3ade9 td{padding:1rem 1.1rem;border-bottom:1px solid color-mix(in srgb,var(--text) 10%,transparent);vertical-align:top;overflow-wrap:anywhere}
-.cf3ade9 th{color:var(--muted);font-weight:500}
-.cf3ade9 thead{background:color-mix(in srgb,var(--accent) 7%,var(--surface))}
-.cf3ade9 thead th{color:var(--text);font-weight:600}
-.cf3ade9 tbody tr:last-child>*{border-bottom:0}
-.cf3ade9 tbody tr:hover{background:color-mix(in srgb,var(--accent) 4%,var(--surface))}
-.c01a8df{max-width:820px;margin:4.5rem auto}
-.c43a7b0{margin:0 0 3.5rem;scroll-margin-top:2rem}
-.c60ac7f{margin:0 0 1.25rem;font:550 clamp(1.65rem,3vw,2.25rem)/1.2 var(--display);letter-spacing:-.035em;text-wrap:balance}
-.cd8a516{color:var(--muted);font-size:1.025rem;line-height:1.9;overflow-wrap:anywhere}
-.cd8a516 p{margin:0 0 1.25rem}
-.cd8a516 h3{margin:1.75rem 0 .75rem;color:var(--text);font:600 1.25rem/1.35 var(--display);letter-spacing:-.02em}
-.cd8a516 strong{color:var(--text);font-weight:600}
-.cd8a516 a,.c291c7c a,.cb57d9b a{color:var(--accent);text-decoration-thickness:1px}
-.cd8a516 ul,.cd8a516 ol,.c291c7c ul,.c291c7c ol{padding-left:1.4rem}
-.cd8a516 li+li{margin-top:.55rem}
-.cd8a516 li::marker{color:var(--accent)}
-.cd8a516 blockquote{margin:1.5rem 0;padding:1rem 1.5rem;border-left:3px solid var(--accent);background:var(--surface);border-radius:0 var(--radius) var(--radius) 0;color:var(--text)}
-.cd8a516 img{height:auto;border-radius:var(--radius)}
-.cd8a516 table{width:100%;border-collapse:collapse}
-.cd8a516 td,.cd8a516 th{padding:.75rem;border-bottom:1px solid color-mix(in srgb,var(--text) 12%,transparent);text-align:left}
-.c0afb97{margin:.8rem 0;padding:0 1.4rem;border:1px solid color-mix(in srgb,var(--text) 12%,transparent);border-radius:var(--radius);background:var(--surface)}
-.c27840f{display:flex;justify-content:space-between;align-items:center;gap:1.5rem;min-height:72px;padding:1.2rem 0;cursor:pointer;list-style:none;font:550 1.05rem/1.5 var(--display)}
-.c27840f::-webkit-details-marker{display:none}
-.c27840f::after{content:"+";flex:none;display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:color-mix(in srgb,var(--accent) 10%,var(--surface));color:var(--accent);font:400 1.25rem/1 var(--body)}
-.c0afb97[open]{border-color:color-mix(in srgb,var(--accent) 40%,transparent)}
-.c0afb97[open]>.c27840f::after{content:"−"}
-.c291c7c{padding:0 2.8rem 1.3rem 0;color:var(--muted);line-height:1.85;overflow-wrap:anywhere}
-.c291c7c p{margin:.25rem 0 .75rem}
-.cb9a455{display:grid;grid-template-columns:1fr 2fr;gap:2rem;padding:2.5rem 0;border-top:1px solid color-mix(in srgb,var(--text) 12%,transparent)}
-.c03b120{margin:0;padding:0;list-style:none}
-.cb57d9b{padding:.7rem 0;border-bottom:1px solid color-mix(in srgb,var(--text) 8%,transparent);color:var(--muted);font-size:.875rem;overflow-wrap:anywhere}
-.cb57d9b:first-child{padding-top:0}
-.cb57d9b:last-child{border-bottom:0}
-.c484d1c{display:flex;justify-content:space-between;align-items:center;gap:1.5rem;padding-block:1.75rem 2.5rem;border-top:1px solid color-mix(in srgb,var(--text) 12%,transparent);color:var(--muted);font-size:.8rem}
-.c07b659{color:var(--text);font:600 1rem/1.3 var(--display);letter-spacing:-.025em}
-.c12a247{margin:0}
-@media(min-width:1100px){.cc9c75e{transform:rotate(1deg)}.cb134d6{transform:rotate(-1deg)}}
-@media(max-width:850px){.c178889{grid-template-columns:1fr;gap:2.5rem;padding-block:1.5rem 3.5rem}.c7908fd{max-width:650px}.cc9c75e{width:100%;max-width:580px;justify-self:center}.c01a8df{margin-block:3.5rem}.c4f210f{gap:1rem}h1{max-width:14ch}}
-@media(max-width:540px){.c34439f{width:calc(100% - 2rem)}.cd2f4a4{min-height:76px;gap:1rem}.c4f210f>a:not(.cec21ac){display:none}.c4f210f .cec21ac{padding:.5rem .8rem}.cc50fbc{padding-block:1.1rem}.c178889{padding-top:1rem}.c7908fd>.c2770d3{width:100%;justify-content:space-between}.c580b71{font-size:1rem}.cc9c75e{padding:7px;border-radius:calc(var(--radius) + 7px)}.cb134d6{padding:1.1rem}.c8df5c2{gap:.4rem;grid-template-columns:minmax(0,1fr) 30px minmax(0,1fr)}.c44dc95{width:30px;height:30px}.c3161f7{padding:.8rem}.c1bfa07{padding:1.4rem 1rem}.cf3ade9 th,.cf3ade9 td{padding:.85rem .65rem}.c0afb97{padding-inline:1rem}.c291c7c{padding-right:0}.cb9a455{grid-template-columns:1fr;gap:1.4rem}.c484d1c{align-items:flex-start;flex-direction:column;gap:.65rem}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important}.c2770d3:hover{transform:none}}
+html{scroll-behavior:smooth}
+body{margin:0;min-height:100vh;display:flex;flex-direction:column;color:var(--ink);font:15px/1.6 var(--body);-webkit-font-smoothing:antialiased;overflow-x:hidden;background:var(--bg)}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:none;-webkit-mask-image:linear-gradient(#000 0,rgba(0,0,0,.35) 60%,transparent 100%);mask-image:linear-gradient(#000 0,rgba(0,0,0,.35) 60%,transparent 100%)}
+a{color:inherit;text-decoration:none}button{font-family:inherit;cursor:pointer;background:none;border:0;color:inherit}
+img{display:block;max-width:100%}
+h1,h2,h3{margin:0;font-family:var(--head);font-weight:500;letter-spacing:-.01em}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:8px}
+
+.nav{display:flex;align-items:center;gap:24px;padding:16px 24px;max-width:1280px;margin:0 auto;width:100%}
+.brand{display:inline-flex;align-items:center;gap:8px;font-family:var(--head);font-weight:500;font-size:20px;letter-spacing:-.02em;color:var(--ink);white-space:nowrap;flex:0 0 auto}
+.brand img{width:28px;height:28px}
+.nlinks{display:flex;align-items:center;gap:20px}
+.nlinks a{font-size:14px;font-weight:500;color:var(--muted);white-space:nowrap;transition:color .16s var(--ease)}
+.nlinks a:hover{color:var(--ink)}
+.spacer{flex:1}
+main{flex:1}
+.chain{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 12px;border-radius:10px;background:var(--panel-2);font-weight:500;font-size:14px;color:var(--ink);transition:background-color .16s var(--ease);flex:0 0 auto;white-space:nowrap}
+.chain img{width:20px;height:20px;border-radius:50%}
+.chain:hover{background:var(--line-2)}
+.chain .cv{width:12px;height:12px;color:var(--muted)}
+.connect{display:inline-flex;align-items:center;height:40px;padding:0 16px;border-radius:10px;background:var(--card);border:1px solid var(--line-2);color:var(--ink);font-weight:500;font-size:14px;transition:background-color .16s var(--ease),border-color .16s var(--ease);flex:0 0 auto;white-space:nowrap}
+.connect:hover{border-color:var(--faint);background:var(--panel)}
+
+.hero{display:flex;flex-direction:column;align-items:center;padding:32px 20px 48px}
+h1{font-size:clamp(36px,4.6vw,48px);line-height:1.08;letter-spacing:-.025em;text-align:center;color:var(--ink);margin:0 0 32px}
+
+.card{width:min(600px,100%);background:var(--card);border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow);overflow:hidden}
+.tabs{display:flex;align-items:center;gap:4px;padding:20px 20px 16px}
+.tab{display:inline-flex;align-items:center;height:36px;padding:0 14px;border-radius:10px;font-weight:500;font-size:14px;color:var(--muted);transition:background-color .16s var(--ease),color .16s var(--ease)}
+.tab:hover{background:var(--panel-2);color:var(--ink)}
+.tab.on{background:var(--accent-soft);color:var(--accent-ink)}
+.tabs .sp{flex:1}
+.tabs .ic{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;color:var(--muted);transition:background-color .16s var(--ease),color .16s var(--ease)}
+.tabs .ic:hover{background:var(--panel-2);color:var(--ink)}
+.tabs .ic svg{width:18px;height:18px}
+
+.promo{margin:0 20px;padding:32px;border-radius:12px;background:var(--promo);display:flex;align-items:center;gap:20px}
+.promo-txt{flex:1;min-width:0}
+.promo-h{font-family:var(--head);font-weight:500;font-size:clamp(22px,3.4vw,28px);line-height:1.2;letter-spacing:-.015em;color:var(--ink);margin:0 0 8px;text-wrap:balance}
+.promo-sub{font-size:15px;line-height:1.6;color:var(--text-2);margin:0;max-width:34ch}
+.promo-grid{flex:0 0 auto;display:grid;grid-template-columns:repeat(2,auto);gap:16px}
+.pico{width:52px;height:52px;border-radius:50%;background:var(--pico-bg);box-shadow:0 0 0 1px var(--pico-ring);display:grid;place-items:center;overflow:hidden}
+.pico img{width:100%;height:100%;object-fit:contain;display:block}
+.promo-flow{flex-direction:column;align-items:stretch;gap:24px}
+.promo-flow .promo-sub{max-width:44ch}
+.flow{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.flow li{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px}
+.flow li+li::before{content:"";position:absolute;top:22px;right:calc(50% + 30px);width:calc(100% - 52px);height:1px;background:var(--line-2)}
+.fi{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;overflow:hidden;background:var(--pico-bg);box-shadow:0 0 0 1px var(--pico-ring);color:var(--accent-ink)}
+.fi img{width:100%;height:100%;display:block}
+.fi svg{width:20px;height:20px}
+.fi.on{background:var(--accent);color:var(--accent-on);box-shadow:none}
+.flow b{margin-top:4px;font-weight:500;font-size:14px;color:var(--ink)}
+.flow small{font-size:13px;line-height:1.4;color:var(--muted)}
+.cta-wrap{padding:20px}
+.cta{width:100%;height:60px;border-radius:12px;background:var(--accent);color:var(--accent-on);font-weight:500;font-size:16px;transition:background-color .16s var(--ease),transform .12s var(--ease)}
+.cta:hover{background:var(--accent-hover)}
+.cta:active{transform:scale(.99)}
+@media(max-width:470px){.promo{flex-direction:column;align-items:flex-start}.promo-grid{grid-template-columns:repeat(4,auto)}.promo-sub{max-width:none}}
+
+.learn{max-width:720px;margin:48px auto 0;width:100%;padding:0 24px 72px}
+.learn-h{font-size:14px;font-weight:500;color:var(--muted);text-align:center;margin:0 0 12px}
+.lrow{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:flex-start}
+.lcard{flex:0 0 auto;background:transparent;border:1px solid var(--line-2);border-radius:10px;transition:background-color .16s var(--ease),border-color .16s var(--ease)}
+.lcard>summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:8px;height:36px;padding:0 12px;font-weight:500;font-size:14px;color:var(--text-2)}
+.lcard>summary::-webkit-details-marker{display:none}
+.lcard:hover{border-color:var(--faint);background:var(--card)}.lcard:hover>summary{color:var(--ink)}
+.lcard .chev{width:6px;height:6px;border-right:1.5px solid var(--muted);border-bottom:1.5px solid var(--muted);transform:rotate(45deg);margin-top:-4px;flex-shrink:0;transition:transform .16s var(--ease)}
+.lcard[open]{order:9;flex:0 0 100%;min-width:0;background:var(--card);border-color:var(--line-2);border-radius:16px;margin-top:8px}
+.lcard[open]>summary{height:auto;padding:20px 24px 0;color:var(--muted);font-size:13px}
+.lcard[open] .chev{transform:rotate(225deg);margin-top:4px}
+.lbody{padding:4px 24px 24px;max-width:660px}
+.lbody h2{font-size:22px;line-height:1.3;color:var(--ink);margin:8px 0 4px}
+.lbody h3{font-size:15px;line-height:1.4;color:var(--ink);margin:20px 0 4px}
+.lbody p{margin:0;font-size:15px;line-height:1.7;color:var(--text-2)}
+.lbody p+p{margin-top:8px}
+.lbody ul,.lbody ol{margin:8px 0 0;padding-left:20px}
+.lbody li{font-size:15px;line-height:1.7;color:var(--text-2);margin-bottom:4px}
+.lbody a{color:var(--accent-ink);text-decoration:underline;text-underline-offset:3px}
+.lbody strong,.lbody b{color:var(--ink);font-weight:500}
+.lbody .tbl{overflow-x:auto;margin:16px 0 4px}
+.lbody table{width:100%;min-width:420px;border-collapse:collapse;font-size:14px}
+.lbody caption{text-align:left;color:var(--muted);font-size:13px;margin-bottom:8px}
+.lbody th,.lbody td{text-align:left;padding:8px 12px;border:1px solid var(--line-2);vertical-align:top;line-height:1.45}
+.lbody thead th{background:var(--panel);color:var(--ink);font-weight:500}
+.lbody tbody th{background:var(--panel);color:var(--muted);white-space:nowrap;font-weight:500}
+.lbody td{color:var(--text-2)}
+.lfaq h3{margin-top:16px;font-size:16px}
+
+footer{border-top:1px solid var(--line-2);background:var(--card)}
+.foot{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;padding:20px 24px 24px;color:var(--muted);font-size:13px}
+.foot a{color:var(--muted);transition:color .16s var(--ease)}.foot a:hover{color:var(--ink)}.foot .sep{color:var(--faint)}
+
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,8px);background:var(--ink);color:var(--bg);border-radius:12px;padding:12px 16px;font-size:13px;box-shadow:0 16px 40px -16px rgba(13,17,28,.5);z-index:60;opacity:0;visibility:hidden;transition:opacity .2s var(--ease),transform .2s var(--ease),visibility .2s;max-width:calc(100% - 32px)}
+.toast.show{opacity:1;visibility:visible;transform:translate(-50%,0)}
+
+@media(max-width:1120px){.nlinks{display:none}}
+@media(max-width:720px){.chain span{display:none}.chain{padding:0 8px;gap:4px}}
+@media(max-width:560px){
+  .nav{padding:12px 16px;gap:8px}
+  .brand{font-size:16px}
+  .brand img{width:24px;height:24px}
+  .chain{height:36px;padding:0 8px;gap:4px}
+  .chain span{display:none}
+  .connect{height:36px;padding:0 12px;font-size:13px}
+  .hero{padding:24px 16px 40px}
+  .tabs{padding:16px 16px 12px}.promo{margin:0 16px;padding:24px}.cta-wrap{padding:16px}.cta{height:56px}
+  .learn{margin-top:40px;padding:0 16px 56px}
+}
 </style>
+<link rel="prerender" href="/dashboard/">
+<link rel="prefetch" href="/dashboard/" as="document">
+<link rel="preload" href="/dashboard/" as="document">
 </head>
 <body>
-<div class="c34439f">
-<nav class="cd2f4a4" aria-label="Main navigation">
-<a class="ca5c58b" href="#hero"><span class="c77e095" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 8h15m-4-4 4 4-4 4M20 16H5m4-4-4 4 4 4"/></svg></span>Compare</a>
-<div class="c4f210f"><a href="#facts">Key facts</a><a href="#guide">Guide</a><a href="#sources">Sources</a><a class="cec21ac" href="dashboard/">Wrap ↗</a></div>
-</nav>
-<div class="cc50fbc"><nav class="c0733cf" aria-label="Breadcrumb"><a href="dashboard/">Home</a> <span>/</span> <span>Wrapping</span> <span>/</span> <span>Trade WETH</span></nav></div>
-<section class="c178889" id="hero" aria-labelledby="hero-title">
-<div class="c7908fd">
-<p class="c00821f">Wrap & unwrap</p>
-<h1 id="hero-title">Trade <em>WETH</em>.</h1>
-<p class="c580b71">When you trade WETH you are working with the ERC-20 wrapped form of ether that every major Ethereum trading venue, lending market, and perpetuals exchange treats as the base asset. Spot pairs, liquidity pools, and leveraged positions almost all settle in WETH rather than native ETH, so understanding how to trade WETH — not just how to wrap it — is what lets you actually use Ethereum's DeFi liquidity. This page covers the trading side: pairs and venues, supplying WETH to pools, posting it as collateral, and the liquidation and impermanent-loss mechanics that come with holding an active WETH position.</p>
-<a class="c2770d3" href="dashboard/">Wrap <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
-<p class="c29c3e3"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>Explore fees and timing below</p>
-</div>
-<aside class="cc9c75e" aria-labelledby="estimator-title">
-<div class="cb134d6">
-<div class="cdaf714"><h2 id="estimator-title">Wrap estimator</h2><span class="c9721be">Auto-updating</span></div>
-<div class="c8df5c2">
-<div class="c3161f7"><span class="ce34fec">From</span><div class="c9d357c"><img src="assets/tokens/eth.svg" alt="Ethereum" width="28" height="28"></div></div>
-<span class="c44dc95" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6"/></svg></span>
-<div class="c3161f7"><span class="ce34fec">To</span><div class="c9d357c"></div></div>
-</div>
-<label class="c956aed" for="amount">Amount</label>
-<div class="c91c005"><input id="amount" type="number" inputmode="decimal" min="1" max="1000000000" step="0.01" value="1000" aria-describedby="amount-hint amount-error"><span>units</span></div>
-<p class="c352f21" id="amount-hint">Enter 1–1,000,000,000 units, up to 2 decimal places.</p>
-<p class="c9588d7" id="amount-error" hidden></p>
-<div class="c1e41cb" role="status" aria-live="polite" aria-atomic="true">
-<span class="c87a38d">Estimated amount received</span>
-<output class="c109e08" id="received" for="amount">—</output>
-<div class="c7f3655">
-<div><span class="c3c15d4">Estimated fee</span><output class="c40de34" id="fee" for="amount">—</output></div>
-<div><span class="c3c15d4">Estimated time</span><output class="c40de34" id="time" for="amount">—</output></div>
-</div>
-</div>
-<a class="c2770d3" href="dashboard/">Wrap <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
-<details class="c97b061"><summary>How the estimate is calculated</summary><p>Fee = 0.5 units + 0.35% of the amount, rounded to 2 decimals. Amount received = amount − fee. Time = 2 minutes + 1 minute per 10,000 units, rounded up.</p></details>
-<noscript><p class="c352f21">Enable JavaScript to calculate fees and timing.</p></noscript>
-</div>
-</aside>
-</section>
-<section class="c1bfa07" id="facts" aria-labelledby="facts-title"><h2 class="c2c00e8" id="facts-title">Key facts</h2><div class="c33ae0a" role="region" aria-label="Key facts table" tabindex="0"><table class="cf3ade9"><tbody><tr><th scope="row">Asset type</th><td>WETH — ERC-20 wrapped ether, 1:1 backed</td></tr>
-<tr><th scope="row">Primary role</th><td>Base trading pair in most Ethereum AMM pools</td></tr>
-<tr><th scope="row">Collateral use</th><td>Accepted across major lending markets like Aave</td></tr>
-<tr><th scope="row">Liquidity depth</th><td>Deepest ETH-denominated liquidity on-chain</td></tr>
-<tr><th scope="row">Key pool risk</th><td>Impermanent loss when WETH is paired in an LP</td></tr>
-<tr><th scope="row">Leverage risk</th><td>Liquidation, tracked via a health factor on lending markets</td></tr></tbody></table></div></section>
-<main class="c01a8df" id="guide"><section class="c43a7b0"><h2 class="c60ac7f">What It Means to Trade WETH</h2><div class="cd8a516"><strong>To trade WETH means buying, selling, pairing, and positioning wrapped ether as an active DeFi asset — not simply holding ETH in a wallet.</strong> WETH exists because native ether does not speak the ERC-20 interface that most smart contracts expect, so the moment you want to trade WETH against another token inside a pool, post it as collateral, or open a leveraged position, you need the wrapped version that behaves like any other token on the network. That one compatibility fix is why almost every serious exchange, money market, and perpetuals venue on Ethereum quotes and settles against WETH rather than the native asset.<h3>Why WETH Instead of Native ETH</h3>Native ETH moves as a protocol-level balance rather than a token balance, so a contract built to call the standard transfer and approve functions cannot handle it directly. Wrapping deposits ETH into a contract that mints an equivalent ERC-20 balance one-for-one, and that wrapped balance is what every pool, vault, and lending market is actually built to move.<h3>WETH as the Base Pair</h3>Most Ethereum AMM pools quote everything against WETH the way foreign-exchange desks quote against the dollar, because pairing every token directly against every other token would fragment liquidity into shallow, inefficient pools. A token paired against WETH inherits the deepest route to the rest of the market, which is why liquidity aggregators and <a href="https://docs.uniswap.org/" rel="nofollow noopener" target="_blank">Uniswap docs</a> describe WETH pools as the default routing hop for swaps that touch ether at all.<h3>Checking the Canonical Contract</h3>Before you trade WETH on any new venue, confirm the pool or market actually references the canonical token rather than an unrelated contract with a similar name. The real WETH contract is verifiable on <a href="https://etherscan.io/token/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2" rel="nofollow noopener" target="_blank">Etherscan</a>, and matching that address against what a venue lists is a quick check worth doing once per new platform.</div></section>
-<section class="c43a7b0"><h2 class="c60ac7f">Where to Trade WETH: Pairs, Pools, and Perps</h2><div class="cd8a516">WETH trades in two broad structures. Automated market makers price it continuously against paired assets inside a liquidity pool, while order-book and perpetuals venues let you trade WETH directly against a counterparty at a quoted price, often with leverage. <a href="https://ethereum.org/en/defi/" rel="nofollow noopener" target="_blank">Ethereum.org's DeFi overview</a> covers the mechanics behind both models in more depth than a single page can. Spot traders moving size typically route through AMM pools for the best execution price after checking depth first; traders wanting directional exposure without moving the underlying asset use WETH-margined perpetuals instead.<table><thead><tr><th>Venue Type</th><th>Common Use</th><th>What You're Exposed To</th></tr></thead><tbody><tr><td>AMM pools (e.g. Uniswap)</td><td>Spot swaps, routing, LP supply</td><td>Pool price impact, impermanent loss</td></tr><tr><td>Lending markets (e.g. Aave)</td><td>WETH as collateral or supplied asset</td><td>Liquidation risk, interest rate changes</td></tr><tr><td>Perpetuals exchanges</td><td>Leveraged long/short on WETH price</td><td>Funding rates, liquidation on leverage</td></tr></tbody></table></div></section>
-<section class="c43a7b0"><h2 class="c60ac7f">Supplying WETH When You Trade WETH Positions as Liquidity</h2><div class="cd8a516">Supplying WETH into a pool turns a trading position into a market-making one: instead of holding a directional view, you earn a share of every swap fee the pool collects, in proportion to your share of the pool. That income is steady when prices are calm and erodes quickly when they are not, which is the core trade-off anyone who wants to trade WETH through liquidity provision has to accept.<h3>How Liquidity Providers Earn and Lose</h3>Fees accrue continuously as other traders swap through the pool, but the pool's own pricing curve rebalances your WETH and paired asset against each other every time the price moves. You end up holding more of whichever asset fell and less of whichever asset rose — the opposite of what an unhedged holder would want.<h3>Impermanent Loss, in Practice</h3>Impermanent loss is the gap between what your pooled position is worth and what simply holding the same WETH and paired asset separately would be worth. It grows with the size of the price move since you deposited and shrinks back toward zero if the price returns to where you started, which is why it is a paper loss until you withdraw, not a guaranteed one. Checking a pool's historical fee yield against its volatility on a tracker like <a href="https://defillama.com/" rel="nofollow noopener" target="_blank">DefiLlama</a> before supplying gives you a sense of whether the fees have tended to outrun the drawdown.</div></section>
-<section class="c43a7b0"><h2 class="c60ac7f">Using WETH as Collateral While You Trade WETH</h2><div class="cd8a516">Posting WETH as collateral lets you borrow against a position you still want to hold, which is how most leveraged WETH trades actually get funded on-chain. You deposit WETH into a money market such as <a href="https://docs.aave.com/" rel="nofollow noopener" target="_blank">Aave</a>, borrow a stablecoin or another asset against it up to the market's loan-to-value limit, and use the borrowed funds to open a second position, effectively trading WETH with leverage while the original collateral keeps earning any supply interest the market pays. The trade-off is that your collateral is now tied to a loan: if WETH's price falls far enough relative to what you borrowed, the position becomes eligible for liquidation.</div></section>
-<section class="c43a7b0"><h2 class="c60ac7f">Liquidation Risk When You Trade WETH on Leverage</h2><div class="cd8a516">Any position where WETH backs a loan or a leveraged trade carries liquidation risk, and understanding how close you are to it matters more than almost any other number on the position.<h3>Reading Your Health Factor</h3>Lending markets express liquidation distance as a health factor or similar ratio, a single number that falls as WETH's price drops relative to what you owe. Keeping that number comfortably above the liquidation threshold, rather than running it close, is what turns a market dip into a manageable drawdown instead of a forced sale.<h3>What Happens at Liquidation</h3>When the threshold is crossed, a portion of your WETH collateral is sold, often at a penalty, to repay the debt and restore the position to a safe ratio. The sale happens automatically and is final, so the only real defense is managing position size and leverage before the price moves, not reacting after it has.</div></section>
-<section class="c43a7b0"><h2 class="c60ac7f">How to Trade WETH: Managing an Active Position</h2><div class="cd8a516">Running a WETH position well is less about the entry and more about the ongoing checks that keep it from becoming a liquidation or an avoidable impermanent-loss drawdown.<ul><li>Size the position against your collateral so a normal price swing does not approach the liquidation threshold.</li><li>Pick the venue — AMM pool, lending market, or perpetuals exchange — that matches whether you want fee income, borrowing power, or directional exposure.</li><li>Check pool depth or order-book liquidity before entering, since thin liquidity widens the price impact on both the way in and the way out.</li><li>Monitor your health factor or margin ratio on a regular cadence, not only when the market is already moving.</li><li>Rebalance or add collateral ahead of a liquidation threshold rather than at it, since the forced-sale penalty is avoidable with earlier action.</li><li>Close or reduce the position deliberately when the thesis that opened it no longer holds.</li></ul></div></section>
-<section class="c43a7b0"><h2 class="c60ac7f">WETH vs ETH for Traders</h2><div class="cd8a516">For a trader actively working positions, WETH is simply the form ether takes once it enters DeFi contracts, and the two are interchangeable at any time through wrapping and unwrapping. The practical difference only shows up in where value sits at a given moment: native ETH is what you hold outside contracts, while WETH is what the pools, lending markets, and perpetuals venues described above actually price, pair, and settle in. Traders who move frequently between spot pairs, LP positions, and collateralized loans end up holding WETH for most of that activity simply because that is the form the contracts require.</div></section><section class="c43a7b0 cc8005b" id="related"><h2 class="c60ac7f">Related tools</h2><div class="cd8a516"><ul><li><a href="https://swap-weth.github.io/">Swap WETH explained</a></li><li><a href="https://wrapped-eth.github.io/">Wrapped ETH</a></li><li><a href="https://unwrap-weth.github.io/">Unwrap WETH explained</a></li><li><a href="https://wrap-btc.github.io/">Wrap BTC</a></li><li><a href="https://sell-wbtc.github.io/">How Sell WBTC works</a></li></ul></div></section><details class="c0afb97"><summary class="c27840f">What does it mean to trade WETH instead of ETH?</summary><div class="c291c7c">It means interacting with the ERC-20 wrapped form of ether inside DeFi contracts — swapping it in pools, supplying it as liquidity, or posting it as collateral — rather than holding native ETH outside those contracts. Pools, lending markets, and perpetuals venues are built to price and settle in WETH.</div></details>
-<details class="c0afb97"><summary class="c27840f">Why do most AMM pools pair against WETH?</summary><div class="c291c7c">Pairing every token against WETH instead of against each other concentrates liquidity into fewer, deeper pools, the same way currency markets quote against a dominant reference currency. It gives any token the shortest, deepest route to the rest of the market.</div></details>
-<details class="c0afb97"><summary class="c27840f">What is impermanent loss when I trade WETH as liquidity?</summary><div class="c291c7c">It is the gap between your pooled WETH position's value and the value of simply holding the same assets separately. It widens as the price moves further from where you deposited and narrows back if the price returns, so it is realized only when you withdraw.</div></details>
-<details class="c0afb97"><summary class="c27840f">Can I use WETH as collateral to borrow against it?</summary><div class="c291c7c">Yes. Lending markets accept WETH as collateral and let you borrow another asset against it up to a loan-to-value limit, which is how most leveraged WETH trades are funded. The collateral remains at risk of liquidation if its price falls far enough relative to the loan.</div></details>
-<details class="c0afb97"><summary class="c27840f">How is liquidation risk measured on a WETH position?</summary><div class="c291c7c">Lending markets track a health factor or similar ratio that falls as WETH's price drops relative to the debt it backs. Crossing the liquidation threshold triggers an automatic, penalized sale of collateral to repay the loan.</div></details>
-<details class="c0afb97"><summary class="c27840f">Is trading WETH on a perpetuals exchange different from spot trading?</summary><div class="c291c7c">Yes. Perpetuals let you trade WETH's price directly with leverage and ongoing funding payments, without moving the underlying token through a pool, while spot trading exchanges the actual WETH balance against another asset.</div></details>
-<details class="c0afb97"><summary class="c27840f">Do I need to wrap ETH every time before I trade WETH?</summary><div class="c291c7c">Only once per batch of ETH you intend to use. Wrapping is a one-time step that converts ETH into the ERC-20 balance the pools and markets require; the wrapped WETH then stays usable across as many trades as you want without wrapping again.</div></details></main>
-<section class="cb9a455" id="sources" aria-labelledby="sources-title"><h2 class="c2c00e8" id="sources-title">Sources</h2><div><ul class="c03b120"><li><a class="cb57d9b" href="https://docs.uniswap.org/" rel="nofollow noopener" target="_blank">Uniswap documentation</a></li>
-<li><a class="cb57d9b" href="https://docs.aave.com/" rel="nofollow noopener" target="_blank">Aave documentation</a></li>
-<li><a class="cb57d9b" href="https://etherscan.io/token/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2" rel="nofollow noopener" target="_blank">WETH token contract — Etherscan</a></li>
-<li><a class="cb57d9b" href="https://defillama.com/" rel="nofollow noopener" target="_blank">DefiLlama</a></li></ul></div></section>
-<footer class="c484d1c"><span class="c07b659">Compare with clarity.</span><p class="c12a247">Updated Nov 08, 2026</p></footer>
-</div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="i-cv" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 6 5 5 5-5"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 5 6v5c0 4.4 3 8.4 7 10 4-1.6 7-5.6 7-10V6z"/><path d="m9 12 2 2 4-4"/></symbol>
+<symbol id="i-coins" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="9" cy="7" rx="5" ry="2.5"/><path d="M4 7v4c0 1.4 2.2 2.5 5 2.5s5-1.1 5-2.5V7"/><path d="M10 15.5c.6 1.2 2.6 2 5 2 2.8 0 5-1.1 5-2.5v-4c0-1.4-2.2-2.5-5-2.5"/><path d="M20 15v4c0 1.4-2.2 2.5-5 2.5s-5-1.1-5-2.5v-2"/></symbol>
+<symbol id="i-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5"/><path d="M12 14.5v2"/></symbol>
+<symbol id="i-layers" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5"/></symbol>
+<symbol id="i-drop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5s-6 6.4-6 10.5a6 6 0 0 0 12 0c0-4.1-6-10.5-6-10.5z"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
+<symbol id="i-server" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="7" rx="2"/><rect x="4" y="13" width="16" height="7" rx="2"/><path d="M8 7.5h.01M8 16.5h.01"/></symbol>
+<symbol id="i-gear" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.4 13a7.8 7.8 0 0 0 0-2l2-1.5-2-3.4-2.3 1a7.6 7.6 0 0 0-1.7-1L15 2.5h-4l-.4 2.6c-.6.3-1.2.6-1.7 1l-2.3-1-2 3.4L4.6 11a7.8 7.8 0 0 0 0 2l-2 1.5 2 3.4 2.3-1c.5.4 1.1.7 1.7 1l.4 2.6h4l.4-2.6c.6-.3 1.2-.6 1.7-1l2.3 1 2-3.4z"/></symbol>
+</defs></svg>
+
+<header class="nav">
+  <a class="brand" href="index.html" aria-label="Trade WETH home"><img src="icon.svg" alt=""><span>Trade WETH</span></a>
+  <nav class="nlinks" aria-label="Primary">
+    <a href="#overview">What is WETH</a>
+    <a href="#compare">Market vs limit</a>
+    <a href="#how">How to trade</a>
+    <a href="#fees">Fees &amp; gas</a>
+    <a href="#security">Security</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+  <span class="spacer"></span>
+  <a class="chain" href="/dashboard/" style="text-decoration:none"><img src="assets/net-ethereum.svg" alt=""><span>Ethereum</span><svg class="cv" aria-hidden="true"><use href="#i-cv"/></svg></a>
+  <a class="connect" href="/dashboard/" style="text-decoration:none">Connect wallet</a>
+</header>
+
+<main>
+  <section class="hero">
+    <h1>Trade WETH</h1>
+
+    <section class="card" aria-label="Trade WETH">
+      <div class="tabs">
+        <button class="tab on" type="button">Market</button>
+        <button class="tab" type="button">Limit</button>
+        <span class="sp"></span>
+        <button class="ic gear" type="button" aria-label="Settings" data-toast="Settings are disabled in this demo."><svg aria-hidden="true"><use href="#i-gear"/></svg></button>
+      </div>
+
+      <div class="promo">
+        <div class="promo-txt">
+          <h2 class="promo-h">Trade WETH with market or limit orders</h2>
+          <p class="promo-sub">Set slippage, read the quote and sign from your own wallet. Gas is paid in ETH.</p>
+        </div>
+        <div class="promo-grid" aria-hidden="true">
+          <span class="pico"><img src="assets/weth-round.svg" alt=""></span>
+          <span class="pico"><img src="assets/usd-coin-usdc.svg" alt=""></span>
+          <span class="pico"><img src="assets/tether-usdt.svg" alt=""></span>
+          <span class="pico"><img src="assets/ethereum-eth.svg" alt=""></span>
+        </div>
+      </div>
+
+      <div class="cta-wrap"><a class="cta" href="/dashboard/" style="display:flex;align-items:center;justify-content:center;text-decoration:none">Trade WETH</a></div>
+    </section>
+  </section>
+
+  <section class="learn" id="learn">
+    <p class="learn-h">Learn about trading WETH</p>
+    <div class="lrow">
+      <details class="lcard" name="learn" id="overview"><summary><span>What is WETH</span><span class="chev" aria-hidden="true"></span></summary><div class="lbody"><h2>Why traders use WETH</h2>
+<p>To <strong>trade WETH</strong> is to buy or sell Wrapped Ether on Ethereum DEXs, usually against stablecoins such as USDC and USDT. WETH is an ERC-20 token that converts 1:1 with ETH, so it behaves like any other token in a pool or an order book.</p>
+<h3>Why WETH and not ETH</h3>
+<p>Native ETH is not an ERC-20 token, so it has no allowance mechanism. Order protocols and DEX routers pull tokens from your wallet through an approval, which is why traders who place limit orders hold WETH rather than ETH.</p>
+<h3>Common pairs</h3>
+<p>WETH/USDC and WETH/USDT are the pairs most traders start with. Each pair has its own pools and depth, so the same trade can quote differently depending on where it is routed.</p></div></details>
+
+      <details class="lcard" name="learn" id="compare"><summary><span>Market vs limit</span><span class="chev" aria-hidden="true"></span></summary><div class="lbody"><h2>Market orders vs limit orders</h2>
+<p>A market order fills now at whatever the pools offer. A limit order waits until the price you set is reached. Both are signed from your own wallet.</p>
+<div class="tbl"><table>
+<caption>Market order vs limit order for WETH</caption>
+<thead><tr><th scope="col"></th><th scope="col">Market order</th><th scope="col">Limit order</th></tr></thead>
+<tbody>
+<tr><th scope="row">Execution</th><td>Immediate, on-chain swap</td><td>Fills only when your price is reached</td></tr>
+<tr><th scope="row">Price</th><td>Current pool price, with price impact</td><td>The price you set, or better</td></tr>
+<tr><th scope="row">Slippage</th><td>Set as a tolerance; the swap reverts if exceeded</td><td>Fixed by the limit price</td></tr>
+<tr><th scope="row">Expiry</th><td>None, it settles or fails at once</td><td>Can expire if the price is not reached</td></tr>
+<tr><th scope="row">Signing</th><td>On-chain transaction, gas paid by you</td><td>Often signed off-chain; WETH approval needed</td></tr>
+</tbody>
+</table></div>
+<h3>How limit orders fill</h3>
+<p>Limit orders run through order protocols. You sign the order details, and a filler executes it on-chain once the market price meets yours. The order can lapse at its expiry, and WETH must be approved because the protocol moves it from your wallet at fill time.</p></div></details>
+
+      <details class="lcard" name="learn" id="how"><summary><span>How to trade</span><span class="chev" aria-hidden="true"></span></summary><div class="lbody"><h2>How to trade WETH</h2>
+<h3>Reading the quote</h3>
+<p>Before you sign, the quote shows the expected output, the route, the price impact and your slippage tolerance. The minimum received line is the lowest amount you will accept; below it, a market swap reverts.</p>
+<h3>Step by step</h3>
+<ol>
+<li>Connect your wallet and pick WETH and the other token, for example USDC or USDT.</li>
+<li>Choose market or limit. For a limit order, enter your price and an expiry.</li>
+<li>Review the quote, price impact, slippage tolerance and estimated gas.</li>
+<li>Approve WETH once if this wallet has not allowed it before.</li>
+<li>Sign. A market swap settles on-chain at once; a limit order waits until it fills or expires.</li>
+</ol>
+<h3>Price impact on large orders</h3>
+<p>Size moves the price. A large order against a shallow pool shifts the pool price as it fills, and the quote shows that as price impact. Compare the figure before you sign, and consider whether a limit order suits the size.</p></div></details>
+
+      <details class="lcard" name="learn" id="fees"><summary><span>Fees &amp; gas</span><span class="chev" aria-hidden="true"></span></summary><div class="lbody"><h2>What trading WETH costs</h2>
+<h3>Gas in ETH</h3>
+<p>Approvals, market swaps and on-chain order fills are Ethereum transactions paid in native ETH. A limit order signed off-chain does not cost gas to place, but its fill does. See how <a href="https://ethereum.org/en/developers/docs/gas/" target="_blank" rel="nofollow noopener">gas works</a>.</p>
+<h3>Trading cost</h3>
+<p>A trade carries price impact, your slippage tolerance and any pool or protocol fee, all reflected in the quoted output. Tighter slippage protects the price but can make a market swap revert when the pool moves.</p>
+<h3>Keep ETH for gas</h3>
+<p>Holding WETH does not pay for gas. Keep a little native ETH in the same wallet so you can approve and sign.</p></div></details>
+
+      <details class="lcard" name="learn" id="security"><summary><span>Security</span><span class="chev" aria-hidden="true"></span></summary><div class="lbody"><h2>Trading safely</h2>
+<h3>Non-custodial by design</h3>
+<p>You connect your own wallet and sign every transaction and order yourself. The interface shows quotes and routes; it never holds your funds or keys.</p>
+<h3>Before you sign</h3>
+<ul>
+<li>Verify the WETH, USDC and USDT contract addresses; fake and lookalike tokens are common.</li>
+<li>Approve only what you need, and revoke old <a href="https://ethereum.org/en/developers/docs/standards/tokens/erc-20/" target="_blank" rel="nofollow noopener">ERC-20</a> allowances you no longer use.</li>
+<li>Read what a signed limit order allows: pair, amount, price and expiry.</li>
+<li>Smart contracts can hold bugs, so risk is never zero.</li>
+</ul></div></details>
+
+      <details class="lcard" name="learn" id="faq"><summary><span>FAQ</span><span class="chev" aria-hidden="true"></span></summary><div class="lbody lfaq"><h2>Trade WETH FAQ</h2>
+<h3>Can I trade WETH with a limit order?</h3>
+<p>Yes, through order protocols that fill your order when the market reaches your price. You sign the order from your wallet, it can expire if the price is not reached, and a filler settles it on-chain.</p>
+<h3>Why do limit orders need WETH instead of ETH?</h3>
+<p>Order protocols pull tokens from your wallet using an ERC-20 allowance. Native ETH has no allowance mechanism, while WETH does, so you wrap ETH into WETH first and approve it.</p>
+<h3>What is the difference between slippage and price impact?</h3>
+<p>Price impact is how far your own trade moves the pool price, and it grows with order size. Slippage tolerance is the extra movement you accept between quote and execution before a market swap reverts.</p>
+<h3>Which pairs can I trade WETH against?</h3>
+<p>WETH/USDC and WETH/USDT are the pairs most traders use, and other ERC-20 pairs are available where pools exist. Depth differs by pair and route, so check the quote for each trade.</p>
+<h3>Do I need ETH to trade WETH?</h3>
+<p>Yes. Gas on Ethereum is paid in native ETH, so keep a small ETH balance for the approval and the swap or fill, even when your trading funds are in WETH.</p>
+<h3>Does the interface hold my WETH?</h3>
+<p>No. It is non-custodial: your WETH stays in your wallet, and you sign every approval, swap and order yourself. The interface never has access to your keys.</p></div></details>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="foot"><span>&copy; 2026 Trade WETH</span><span class="sep">&middot;</span><a href="legal.html#privacy">Privacy</a><span class="sep">&middot;</span><a href="legal.html#terms">Terms</a><span class="sep">&middot;</span><span>Non-custodial &middot; WETH on Ethereum</span></div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
 <script>
-(() => {
-  const amount = document.getElementById('amount');
-  const received = document.getElementById('received');
-  const fee = document.getElementById('fee');
-  const time = document.getElementById('time');
-  const error = document.getElementById('amount-error');
-  const number = new Intl.NumberFormat('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-  let timer;
-  function update() {
-    const value = amount.valueAsNumber;
-    const valid = amount.value.trim() !== '' && Number.isFinite(value) && amount.validity.valid;
-    amount.setAttribute('aria-invalid', String(!valid));
-    error.hidden = valid;
-    error.textContent = valid ? '' : 'Enter an amount from 1 to 1,000,000,000 with up to 2 decimal places.';
-    if (!valid) {
-      received.textContent = '—';
-      fee.textContent = '—';
-      time.textContent = '—';
-      return;
-    }
-    const amountCents = Math.round(value * 100);
-    const feeCents = 50 + Math.round(amountCents * 35 / 10000);
-    received.textContent = number.format((amountCents - feeCents) / 100) + ' units';
-    fee.textContent = number.format(feeCents / 100) + ' units';
-    time.textContent = (2 + Math.ceil(value / 10000)).toLocaleString('en-US') + ' min';
-  }
-  amount.addEventListener('input', () => {
-    clearTimeout(timer);
-    timer = setTimeout(update, 180);
-  });
-  amount.addEventListener('change', () => {
-    clearTimeout(timer);
-    update();
-  });
-  update();
+(function(){
+"use strict";
+var tabs=[].slice.call(document.querySelectorAll('.tab'));
+tabs.forEach(function(t){t.addEventListener('click',function(){tabs.forEach(function(x){x.classList.toggle('on',x===t);});});});
+
+var toast=document.getElementById('toast'),tT;
+function notify(m){toast.textContent=m;toast.classList.add('show');clearTimeout(tT);tT=setTimeout(function(){toast.classList.remove('show');},3000);}
+[].slice.call(document.querySelectorAll('[data-toast]')).forEach(function(b){b.addEventListener('click',function(){notify(b.getAttribute('data-toast'));});});
+
+function openHash(){var id=location.hash.slice(1);if(!id)return;var c=document.getElementById(id);if(c&&c.matches&&c.matches('.lcard[name="learn"]'))c.open=true;}
+window.addEventListener('hashchange',openHash);openHash();
+[].slice.call(document.querySelectorAll('.nlinks a')).forEach(function(a){a.addEventListener('click',function(){var c=document.getElementById(a.getAttribute('href').slice(1));if(c&&c.matches('.lcard'))c.open=true;});});
 })();
 </script>
-</body>
-</html>
+</body></html>

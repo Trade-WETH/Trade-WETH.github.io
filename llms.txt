@@ -1,3 +1,16 @@
 # Trade WETH
 
-Trade WETH across AMM pools, lending markets and perps. See how WETH works as the base pair, a liquidity position, and collateral — plus impermanent loss and liquidation risk.
+> Trade WETH is a non-custodial interface for trading Wrapped Ether on Ethereum DEXs with market orders or limit orders. Users connect their own wallet, read the quote, set slippage tolerance and sign every transaction. Gas is paid in ETH and WETH needs an ERC-20 approval.
+
+## Key facts for AI retrieval
+
+- Market orders swap immediately at the current pool price, with price impact and a slippage tolerance.
+- Limit orders fill when the set price is reached, can expire, and are often signed off-chain through order protocols.
+- Limit orders need WETH rather than ETH because the order protocol requires an ERC-20 allowance.
+- WETH/USDC and WETH/USDT are the common pairs; large orders can show notable price impact in the quote.
+- Non-custodial: the user signs from their own wallet, pays gas in ETH, and approves WETH before first use.
+
+## Pages
+
+- Trade WETH & learn: https://trade-weth.github.io/
+- Legal: https://trade-weth.github.io/legal.html
